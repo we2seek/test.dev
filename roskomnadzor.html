@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Document</title>
+   <script>
+var text = "роскомнадзор запретил букву";
+var alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
+var i = 0;
+
+while(text.length > 0){
+   console.log(text + ' ' + alphabet[i]);
+   text = text.split(alphabet[i]).join('').trim();
+   i++;
+}
+   </script>
+</head>
+<body>
+   
+</body>
+</html>
