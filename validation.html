@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Form Validation</title>
+	<!-- BOOTSTRAP: Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-offset-3"></div>
+			<div class="col-lg-6">
+				<h4>Sign in</h4>
+				<form id="myForm" class="form">
+					<div class="form-group has-feedback">
+						<label class="sr-only" for="emailInput">Email</label>
+						<input type="text" class="form-control" id="emailInput" name="email" placeholder="Email">
+						<span class="glyphicon form-control-feedback" id="emailInput-icon"></span>
+					</div>
+					<div class="form-group has-feedback">
+						<label class="sr-only" for="passwordInput">Password</label>
+						<input type="password" class="form-control" id="passwordInput" name="password" placeholder="Password">
+						<span class="glyphicon form-control-feedback" id="passwordInput-icon"></span>
+					</div>
+					<button type="submit" class="btn btn-primary">
+						<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+						Sign in
+					</button>
+				</form>		
+			</div>
+		</div>
+		
+	</div>
+
+
+	<!-- jQuery -->
+	<script src="js/jquery-2.1.4.min.js"></script>
+	<!-- BOOTSTRAP: Latest compiled and minified JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- jQuery Form Validator -->
+	<script src="js/jquery.validate.min.js"></script>
+	<!-- My script -->
+	<script src="js/script-validation.js"></script>
+</body>
+</html>

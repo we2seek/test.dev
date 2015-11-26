@@ -3,19 +3,24 @@
 <head>
    <meta charset="UTF-8">
    <title>Document</title>
-   <script>
+   
+</head>
+<body>
+	<p id="output"></p>
+
+
+	<script>
 var text = "роскомнадзор запретил букву";
 var alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
 var i = 0;
+var output = document.getElementById("output");
 
 while(text.length > 0){
    console.log(text + ' ' + alphabet[i]);
    text = text.split(alphabet[i]).join('').trim();
+   output.innerHTML += (text + ' ' + alphabet[i] + '<br>');
    i++;
 }
    </script>
-</head>
-<body>
-   
 </body>
 </html>
