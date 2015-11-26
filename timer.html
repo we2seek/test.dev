@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Timer example</title>
+</head>
+<body>
+	<h1>Timer example</h1>
+	<h4 id="time"></h4>
+	<button onclick="cancelTimer();">Cancel</button>
+
+	<script type="text/javascript">
+	function showTime(where){
+		var h4 = document.getElementById("time");
+		h4.innerHTML = new Date();
+	}
+	function cancelTimer(){
+		window.clearInterval(intervalID);
+	}
+
+	var intervalID = window.setInterval(showTime, 500);
+	</script>
+</body>
+</html>
