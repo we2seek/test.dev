@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Feedback Form</title>
+	<style type="text/css">
+.floating-form {
+	background-color: blue;
+	border: 0px;
+
+	max-width: 380px;
+	position: fixed;
+	right: 5px;
+}
+
+.feedback-trigger {
+	color: white;
+	background-color: #005a9d;
+	border: 0px;
+	border-radius: 5px 5px 0px 0px;
+	-webkit-border-radius: 5px 5px 0px 0px;
+	-moz-border-radius: 5px 5px 0px 0px;
+
+	font: 14px arial, sans-serif;
+	white-space: nowrap;
+	position: absolute;
+	width: 128px;
+	left: -91px;
+	top: 56px;
+	margin: 0px;
+	padding: 10px;
+	-webkit-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	-o-transform: rotate(-90deg);
+
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#005a9d+0,537d9b+100 */
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#005a9d+0,006dc1+100 */
+background: rgb(0,90,157); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(0,90,157,1) 0%, rgba(0,109,193,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(0,90,157,1) 0%,rgba(0,109,193,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(0,90,157,1) 0%,rgba(0,109,193,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#005a9d', endColorstr='#006dc1',GradientType=0 ); /* IE6-9 */
+
+	-webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+	-moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+	box-shadow: rgba(0,0,0,1) 0 1px 0;
+	/*text-shadow: rgba(0,0,0,.4) 0 1px 0;*/
+	text-decoration: none;
+	vertical-align: middle;
+	text-align: center;
+	cursor: pointer;
+}
+
+.feedback-trigger:hover {
+   border-top-color: #00599d;
+   background: #00599d;
+   color: #fff	;
+}
+
+.feedback-content {
+	background-color: white;
+	border: 1px solid #005a9d;
+
+	width: 300px;
+	font-size: 17px;
+	margin: 0px;
+	padding: 10px;	
+}
+	</style>
+	<script src="js/jquery-2.1.4.min.js"></script>
+	<script>
+$(document).ready(function(){
+	var _scroll = true,
+		_timer = false,
+		_floatbox = $("#contact_form"),
+		_floatbox_trigger = $(".feedback-trigger");
+
+	// Hide form by default
+	_floatbox.css("right", "-322px");
+
+	// Show/hide form
+	_floatbox_trigger.click(function(){
+		if (_floatbox.hasClass("visiable")){
+
+			_floatbox.animate({"right":"-322px"}, {duration: 300}).removeClass("visiable");
+		} else {
+			_floatbox.animate({"right":"0px"}, {duration: 300}).addClass("visiable");
+		}
+	});
+
+	//Effect on Scroll
+    $(window).scroll(function(){
+        if(_scroll){
+            _floatbox.animate({"top": "30px"},{duration: 300});
+            _scroll = false;
+        }
+        if(_timer !== false){ clearTimeout(_timer); }           
+            _timer = setTimeout(function(){_scroll = true; 
+            _floatbox.animate({"top": "10px"},{easing: "linear"}, {duration: 500});}, 400); 
+    });
+});
+	</script>
+	</head>
+	<body>
+		<div class="floating-form" id="contact_form">
+			<div class="feedback-trigger">Заявка в 1 клик</div>
+			<div class="feedback-content">
+				<h3>Вызов мастера</h3>
+				<form>
+					<input type="text" name="phone" value="+380">
+					<input type="submit" value="Отправить">
+				</form>
+				<p>Оставьте ваш телефон и вы вам перезвоним</p>
+			</div>
+		</div>
+	</body>
+</html>
