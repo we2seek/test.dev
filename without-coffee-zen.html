@@ -1,0 +1,110 @@
+<html>
+<head>
+	<title>Coffee free</title>
+<style type="text/css">
+
+body {
+	margin: 0px;
+	padding: 0px;
+	background-color: #111;
+	color: white;
+}
+
+body div {
+	width: 800px;
+	margin: 25px auto;
+	border: 0px dashed white;
+	text-align: center;
+	font: 72px arial, sans-serif;
+}
+
+button {
+	width: 200px;
+	-webkit-border-radius: 28;
+	-moz-border-radius: 28;
+	border-radius: 28px;
+	font-family: Arial;
+	color: #ffffff;
+	font-size: 34px;
+	background: #111;
+	padding: 10px 20px 10px 20px;
+	border: solid #ffffff 2px;
+	text-decoration: none;
+}
+
+button:hover {
+	background: #111;
+	text-decoration: none;
+	border: solid #80FF00 2px;
+	color: #80FF00;
+	cursor: pointer;
+}
+
+button:focus {
+	outline: none;
+}
+
+</style>
+
+<script type="text/javascript">
+var initSeconds = 0;
+var timerId = 0;
+
+// jQuery $(document).ready equivalent
+document.addEventListener("DOMContentLoaded", function(event) { 
+	// timerId = setInterval(changeText, 1000);
+});
+
+function changeText(){
+	var timeText = document.getElementById("timeText");
+	initSeconds++;
+	timeText.textContent = secToHHMMSS(initSeconds);
+}
+
+function secToHHMMSS(seconds){
+	var sec = parseInt(seconds, 10);
+	var hh = Math.floor(sec / 3600);
+	var mm = Math.floor((sec - hh * 3600) / 60);
+	var ss = sec - hh * 3600 - mm * 60;
+	var delimeter = seconds % 2 === 0 ? ":" : " ";
+	
+	if (hh < 10) {
+		hh = '0' + hh;
+	}
+
+	if (mm < 10) {
+		mm = '0' + mm;
+	}
+
+	if (ss < 10) {
+		ss = '0' + ss;
+	}
+
+	return hh + delimeter + mm + delimeter + ss;
+}
+
+function stopTimer(){
+	
+	var button = document.getElementById("btn");
+	var buttonText = button.textContent;
+	if (buttonText === 'Pause') {
+		window.clearInterval(timerId);
+		button.textContent = "Resume";	
+	} else {
+		timerId = setInterval(changeText, 1000);
+		button.textContent = "Pause";
+	}
+}
+
+
+</script>
+
+</head>
+<body>
+	<div id="container">
+		Without coffee zen
+		<p id="timeText">00:00:00</p>
+		<button id="btn" onclick="stopTimer();">Start</button>
+	</div>
+</body>
+</html>
