@@ -1,6 +1,8 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>Coffee free</title>
+	<meta charset="UTF-8">
+	<title>Zen :: Without Coffee</title>
 <style type="text/css">
 
 body {
@@ -24,24 +26,32 @@ button {
 	-moz-border-radius: 28;
 	border-radius: 28px;
 	font-family: Arial;
-	color: #ffffff;
+	color: #80FF00;
 	font-size: 34px;
 	background: #111;
 	padding: 10px 20px 10px 20px;
-	border: solid #ffffff 2px;
+	border: solid #80FF00 2px;
 	text-decoration: none;
 }
 
 button:hover {
-	background: #111;
+	background: #80FF00;
 	text-decoration: none;
 	border: solid #80FF00 2px;
-	color: #80FF00;
+	color: #111;
 	cursor: pointer;
 }
 
 button:focus {
 	outline: none;
+}
+
+#timeText {
+	font-size: 100px;
+}
+
+div > div {
+	font: 14px monospace;
 }
 
 </style>
@@ -51,8 +61,9 @@ var initSeconds = 0;
 var timerId = 0;
 
 // jQuery $(document).ready equivalent
-document.addEventListener("DOMContentLoaded", function(event) { 
+document.addEventListener("DOMContentLoaded", function(event) {
 	// timerId = setInterval(changeText, 1000);
+    makeRequest(-1);
 });
 
 function changeText(){
@@ -61,13 +72,19 @@ function changeText(){
 	timeText.textContent = secToHHMMSS(initSeconds);
 }
 
-function secToHHMMSS(seconds){
+function secToHHMMSS(seconds, animate){
 	var sec = parseInt(seconds, 10);
 	var hh = Math.floor(sec / 3600);
 	var mm = Math.floor((sec - hh * 3600) / 60);
 	var ss = sec - hh * 3600 - mm * 60;
-	var delimeter = seconds % 2 === 0 ? ":" : " ";
-	
+
+    // Sign : may disappear in results
+    if (animate === true) {
+	    var delimiter = seconds % 2 === 0 ? ":" : " ";
+    } else {
+        var delimiter = ":";
+    }
+
 	if (hh < 10) {
 		hh = '0' + hh;
 	}
@@ -80,31 +97,82 @@ function secToHHMMSS(seconds){
 		ss = '0' + ss;
 	}
 
-	return hh + delimeter + mm + delimeter + ss;
+	return hh + delimiter + mm + delimiter + ss;
 }
 
-function stopTimer(){
+function fireStarter(){
 	
 	var button = document.getElementById("btn");
 	var buttonText = button.textContent;
 	if (buttonText === 'Pause') {
 		window.clearInterval(timerId);
-		button.textContent = "Resume";	
+		button.textContent = "Resume";
+		makeRequest(initSeconds);
 	} else {
-		timerId = setInterval(changeText, 1000);
+		timerId = setInterval(changeText, 100);
 		button.textContent = "Pause";
+
 	}
 }
 
+var httpRequest;
 
+function makeRequest(seconds) {
+	var url = "./php/time.php"
+    if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        httpRequest = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    if (!httpRequest) {
+      alert('Giving up :( Cannot create an XMLHTTP instance');
+      return false;
+    }
+
+    httpRequest.onreadystatechange = alertContents;
+    httpRequest.open('POST', url);
+    httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    httpRequest.send('timer=' + encodeURIComponent(seconds));
+}
+
+function alertContents() {
+	if (httpRequest.readyState == XMLHttpRequest.DONE ) {
+		if(httpRequest.status == 200){
+			var data = JSON.parse(httpRequest.responseText);
+			console.log(data);
+            var html = "";
+            data.forEach(function(item, i){
+                html += "<tr><td>" + item["date"] + "</td><td>" +  secToHHMMSS(item["seconds"]) + "</td></tr>";
+            });
+			document.getElementById("results").innerHTML = html;
+		} else {
+			alert("Something went wrong with XMLHttpRequest: \r\n" 
+				+ httpRequest.status + ": " + httpRequest.statusText);
+		}
+	}
+}
 </script>
-
 </head>
 <body>
-	<div id="container">
+	<div>
 		Without coffee zen
 		<p id="timeText">00:00:00</p>
-		<button id="btn" onclick="stopTimer();">Start</button>
+		<button id="btn" onclick="fireStarter();">Start</button>
+		<div>
+			<table>
+				<thead>
+				<tr>
+					<th>Date</th>
+					<th>Time</th>
+				</tr>
+				</thead>
+				<tbody id="results">
+				</tbody>
+			</table>
+		</div>
 	</div>
 </body>
 </html>
