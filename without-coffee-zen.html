@@ -2,177 +2,39 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Zen :: Without Coffee</title>
-<style type="text/css">
-
-body {
-	margin: 0px;
-	padding: 0px;
-	background-color: #111;
-	color: white;
-}
-
-body div {
-	width: 800px;
-	margin: 25px auto;
-	border: 0px dashed white;
-	text-align: center;
-	font: 72px arial, sans-serif;
-}
-
-button {
-	width: 200px;
-	-webkit-border-radius: 28;
-	-moz-border-radius: 28;
-	border-radius: 28px;
-	font-family: Arial;
-	color: #80FF00;
-	font-size: 34px;
-	background: #111;
-	padding: 10px 20px 10px 20px;
-	border: solid #80FF00 2px;
-	text-decoration: none;
-}
-
-button:hover {
-	background: #80FF00;
-	text-decoration: none;
-	border: solid #80FF00 2px;
-	color: #111;
-	cursor: pointer;
-}
-
-button:focus {
-	outline: none;
-}
-
-#timeText {
-	font-size: 100px;
-}
-
-div > div {
-	font: 14px monospace;
-}
-
-</style>
-
-<script type="text/javascript">
-var initSeconds = 0;
-var timerId = 0;
-
-// jQuery $(document).ready equivalent
-document.addEventListener("DOMContentLoaded", function(event) {
-	// timerId = setInterval(changeText, 1000);
-    makeRequest(-1);
-});
-
-function changeText(){
-	var timeText = document.getElementById("timeText");
-	initSeconds++;
-	timeText.textContent = secToHHMMSS(initSeconds);
-}
-
-function secToHHMMSS(seconds, animate){
-	var sec = parseInt(seconds, 10);
-	var hh = Math.floor(sec / 3600);
-	var mm = Math.floor((sec - hh * 3600) / 60);
-	var ss = sec - hh * 3600 - mm * 60;
-
-    // Sign : may disappear in results
-    if (animate === true) {
-	    var delimiter = seconds % 2 === 0 ? ":" : " ";
-    } else {
-        var delimiter = ":";
-    }
-
-	if (hh < 10) {
-		hh = '0' + hh;
-	}
-
-	if (mm < 10) {
-		mm = '0' + mm;
-	}
-
-	if (ss < 10) {
-		ss = '0' + ss;
-	}
-
-	return hh + delimiter + mm + delimiter + ss;
-}
-
-function fireStarter(){
-	
-	var button = document.getElementById("btn");
-	var buttonText = button.textContent;
-	if (buttonText === 'Pause') {
-		window.clearInterval(timerId);
-		button.textContent = "Resume";
-		makeRequest(initSeconds);
-	} else {
-		timerId = setInterval(changeText, 100);
-		button.textContent = "Pause";
-
-	}
-}
-
-var httpRequest;
-
-function makeRequest(seconds) {
-	var url = "./php/time.php"
-    if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        httpRequest = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-
-    if (!httpRequest) {
-      alert('Giving up :( Cannot create an XMLHTTP instance');
-      return false;
-    }
-
-    httpRequest.onreadystatechange = alertContents;
-    httpRequest.open('POST', url);
-    httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-    httpRequest.send('timer=' + encodeURIComponent(seconds));
-}
-
-function alertContents() {
-	if (httpRequest.readyState == XMLHttpRequest.DONE ) {
-		if(httpRequest.status == 200){
-			var data = JSON.parse(httpRequest.responseText);
-			console.log(data);
-            var html = "";
-            data.forEach(function(item, i){
-                html += "<tr><td>" + item["date"] + "</td><td>" +  secToHHMMSS(item["seconds"]) + "</td></tr>";
-            });
-			document.getElementById("results").innerHTML = html;
-		} else {
-			alert("Something went wrong with XMLHttpRequest: \r\n" 
-				+ httpRequest.status + ": " + httpRequest.statusText);
-		}
-	}
-}
-</script>
+	<link rel="stylesheet" href="css/coffee.css">
 </head>
 <body>
 	<div>
-		Without coffee zen
-		<p id="timeText">00:00:00</p>
-		<button id="btn" onclick="fireStarter();">Start</button>
+		
 		<div>
+			<h1>Without coffee zen</h1>
+			<p id="timeText">00:00:00</p>
+			<button id="btn" onclick="fireStarter();">Start</button>	
+		</div>
+		
+		
+
+		<div>
+			<h1>History</h1>
 			<table>
-				<thead>
-				<tr>
-					<th>Date</th>
-					<th>Time</th>
-				</tr>
-				</thead>
 				<tbody id="results">
 				</tbody>
 			</table>
 		</div>
+
+		<div>
+			<h1>Top result</h1>
+			<table>
+				<tbody id="top_results">
+				</tbody>
+			</table>
+		</div>
+
 	</div>
+
+	<script src="js/coffee.js"></script>
 </body>
 </html>

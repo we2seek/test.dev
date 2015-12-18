@@ -1,0 +1,20 @@
+body {
+	margin-top: 50px
+}
+
+div#main {
+	background-color: white;
+	
+	/* Border */
+	border-radius: 7px 7px 7px 7px;
+	-moz-border-radius: 7px 7px 7px 7px;
+	-webkit-border-radius: 7px 7px 7px 7px;
+	border: 1px solid #ccc;
+	
+	/* Shadow */
+	-webkit-box-shadow: 0px 0px 6px -5px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 5px 25px -5px rgba(0,0,0,0.75);
+	box-shadow: 0px 5px 25px -5px rgba(0,0,0,0.75);
+
+	padding: 40px 25px;
+}

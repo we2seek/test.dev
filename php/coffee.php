@@ -23,6 +23,7 @@ try {
     );
     $db = new PDO($dsn, $user, $pass, $opt);
 
+    // add new record
     if ($seconds != -1) {
         $sql = "INSERT INTO `without_coffee` (seconds) VALUES (:seconds)";
         $stmt = $db->prepare($sql);
@@ -30,11 +31,29 @@ try {
         $stmt->execute();
     }
 
+    // records list
     $sql = "SELECT DATE_FORMAT(`date`, '%Y-%m-%d %H:%i') AS `date`, `seconds` FROM `without_coffee` ORDER BY `date` DESC LIMIT 10";
     $stmt = $db->prepare($sql);
     $stmt->execute();
 
-    echo json_encode($stmt->fetchAll());
+    $records = $stmt->fetchAll();
+
+    // top result
+    $stmt = $db->prepare("SELECT DATE_FORMAT(`date`, '%Y-%m-%d %H:%i') AS `date`, `seconds` FROM `without_coffee` ORDER BY `seconds` DESC LIMIT 1");
+    $stmt->execute();
+    $top = $stmt->fetchAll();
+    // print_r($top); exit();
+    $return = array();
+    if (isset($top[0])) {
+        $return["max_date"] = $top[0]["date"];
+        $return["max_seconds"] = $top[0]["seconds"];
+    }
+
+    if (isset($records)) {
+        $return["records"] = $records;
+    }
+
+    echo json_encode($return);
 
 } catch (PDOException $e) {
     echo $e->getMessage();
