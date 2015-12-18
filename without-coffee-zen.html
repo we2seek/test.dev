@@ -3,38 +3,31 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Zen :: Without Coffee</title>
+	<title>Zen &mdash; Without Coffee</title>
 	<link rel="stylesheet" href="css/coffee.css">
 </head>
 <body>
 	<div>
-		
 		<div>
 			<h1>Without coffee zen</h1>
-			<p id="timeText">00:00:00</p>
-			<button id="btn" onclick="fireStarter();">Start</button>	
+			<p id="timeText">00:00:00.0</p>
+			<button id="btnStart" onclick="fireStarter()">Start</button>
 		</div>
-		
-		
-
 		<div>
-			<h1>History</h1>
+			<button onclick="showHide('results')">History</button>
 			<table>
 				<tbody id="results">
 				</tbody>
 			</table>
 		</div>
-
 		<div>
-			<h1>Top result</h1>
+			<button onclick="showHide('top_results')">Top result</button>
 			<table>
 				<tbody id="top_results">
 				</tbody>
 			</table>
 		</div>
-
 	</div>
-
 	<script src="js/coffee.js"></script>
 </body>
 </html>

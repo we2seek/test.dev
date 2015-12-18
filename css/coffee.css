@@ -7,7 +7,20 @@ body {
 	font: 14px arial, sans-serif;
 }
 
- p {
+#timeText {
+	font-size: 72px;
+	margin: 40px 0px;
+}
+
+h1 {
+	font: 50px arial, sans-serif normal;
+}
+
+h2 {
+	font-weight: normal;
+}
+
+p {
 	margin: 0px;
 	padding: 0px;
 }
@@ -34,12 +47,12 @@ div > div:nth-child(2) {
 div > div:nth-child(3) {
 	/*background-color: orange;*/
 	float: left;
-	width: 300px;
+    width: 50%;
 }
 
 div table {
 	/*width: 100%;*/
-	margin: 0px auto;
+	margin: 15px auto 0px;
 	padding: 0px;
 }
 
@@ -53,33 +66,55 @@ tr > td:nth-child(1) {
 	padding: 1px 15px;
 }
 
-#timeText {
-	font-size: 72px;
-	margin: 50px 0px;
-}
-
-button {
+div > button {
 	width: 200px;
 	-webkit-border-radius: 28;
 	-moz-border-radius: 28;
 	border-radius: 28px;
+	border: solid #111 2px;
 	font-family: Arial;
 	color: #80FF00;
 	font-size: 34px;
 	background: #111;
 	padding: 10px 20px 10px 20px;
-	border: solid #80FF00 2px;
 	text-decoration: none;
 }
 
 button:hover {
-	background: #80FF00;
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    border: solid #80FF00 2px;
+	background: #111;
 	text-decoration: none;
 	border: solid #80FF00 2px;
-	color: #111;
+    color: #80FF00;
 	cursor: pointer;
 }
 
 button:focus {
 	outline: none;
+}
+
+div > button:nth-child(1){
+	width: 100px;
+    /*-webkit-border-radius: 28px;*/
+    /*-moz-border-radius: 28px;*/
+    /*border-radius: 28px;*/
+    /*border: solid #0066cc 2px;*/
+    border: solid #111 2px;
+	color: #0066cc;
+	font-size: 14px;
+	background: #111;
+	padding: 10px;
+	text-decoration: none;
+}
+
+div > button:nth-child(1):hover{
+    /*background: #0066cc;*/
+
+    text-decoration: none;
+    border: solid #0066cc 2px;
+    color: #0066cc;
+    cursor: pointer;
 }

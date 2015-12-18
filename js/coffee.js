@@ -4,24 +4,30 @@ var timerId = 0;
 // jQuery $(document).ready equivalent
 document.addEventListener("DOMContentLoaded", function(event) {
 	// timerId = setInterval(changeText, 1000);
+    showHide("results");
+    showHide("top_results");
     makeRequest(-1);
 });
 
 function changeText(){
 	var timeText = document.getElementById("timeText");
 	initSeconds++;
-	timeText.textContent = secToHHMMSS(initSeconds);
+	timeText.textContent = secToHHMMSS(initSeconds, true);
 }
 
 function secToHHMMSS(seconds, animate){
-	var sec = parseInt(seconds, 10);
-	var hh = Math.floor(sec / 3600);
-	var mm = Math.floor((sec - hh * 3600) / 60);
-	var ss = sec - hh * 3600 - mm * 60;
 
-    // Sign : may disappear in results
+	var msec = parseInt(seconds, 10);
+    var sec = Math.floor(msec / 10);
+
+    var hh = Math.floor(sec / 3600);
+	var mm = Math.floor((sec - hh * 3600) / 60);
+	var ss = Math.floor(sec - hh * 3600 - mm * 60);
+    var zz =  msec - hh * 36000 - mm * 600 - ss * 10;
+
+     // Sign : may disappear in results
     if (animate === true) {
-	    var delimiter = seconds % 2 === 0 ? ":" : " ";
+	    var delimiter = (ss % 2 === 0) ? ":" : " ";
     } else {
         var delimiter = ":";
     }
@@ -38,16 +44,20 @@ function secToHHMMSS(seconds, animate){
 		ss = '0' + ss;
 	}
 
-	return hh + delimiter + mm + delimiter + ss;
+	return hh + delimiter + mm + delimiter + ss + "." + zz;
 }
 
 function fireStarter(){
-	
-	var button = document.getElementById("btn");
+	var tableResults = document.getElementById("results");
+	var tableTopResults = document.getElementById("top_results");
+
+	var button = document.getElementById("btnStart");
 	var buttonText = button.textContent;
 	if (buttonText === 'Stop') {
 		window.clearInterval(timerId);
 		button.textContent = "Start";
+        tableResults.innerHTML = "<img src='/images/loading2.gif'>";
+        tableTopResults.innerHTML = "<img src='/images/loading2.gif'>";
 		makeRequest(initSeconds);
 		initSeconds = 0;
 	} else {
@@ -83,12 +93,7 @@ function alertContents() {
 	if (httpRequest.readyState == XMLHttpRequest.DONE ) {
 		if(httpRequest.status == 200){
 			var data = JSON.parse(httpRequest.responseText);
-			console.log(data);
-            
 			var records = data.records;
-			console.log(records);
-			console.log(data["max_date"]);
-			console.log(secToHHMMSS(data["max_seconds"]));
 
 			var html = "";
             records.forEach(function(item, i){
@@ -96,11 +101,22 @@ function alertContents() {
             });
 			document.getElementById("results").innerHTML = html;
 
-			var html = "<tr><td>" + data["max_date"] + "</td><td>" + secToHHMMSS(data["max_seconds"]) + "</td></tr>";
-			document.getElementById("top_results").innerHTML = html;
+            if (data["max_date"] != undefined && data["max_seconds"] != undefined) {
+			    var html = "<tr><td>" + data["max_date"] + "</td><td>" + secToHHMMSS(data["max_seconds"]) + "</td></tr>";
+    			document.getElementById("top_results").innerHTML = html;
+            }
 		} else {
 			alert("Something went wrong with XMLHttpRequest: \r\n" 
 				+ httpRequest.status + ": " + httpRequest.statusText);
 		}
 	}
+}
+
+function showHide(id){
+    var table = document.getElementById(id);
+    if (table.style.display === "none"){
+        table.style.display = "";
+    } else {
+        table.style.display = "none";
+    }
 }
