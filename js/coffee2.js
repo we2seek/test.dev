@@ -1,81 +1,93 @@
-var httpRequest;
+var timer,
+    timerId = 0,
+    seconds = 0,
+    tableHistory,
+    tableTop;
 
 $(document).ready(function(){
-	makeRequest(-1);
+    timer = $("#timerText");
+    tableHistory = $("#history>tbody");
+    tableTop = $("#top>tbody");
+	makeRequest(seconds);
+
+    $("button#btnStart").on("click", function(){
+        var buttonText = $(this).html();
+
+        if (buttonText === "Start") {
+            $(this).html("Stop");
+            timerId = setInterval(changeText, 100);
+        } else {
+            $(this).html("Start");
+            window.clearInterval(timerId);
+            makeRequest(seconds);
+            seconds = 0;
+        }
+    });
 });
 
-function makeRequest(seconds) {
-	var url = "./php/coffee.php"
-    if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        httpRequest = new XMLHttpRequest();
-    } else {
-        // code for IE6, IE5
-        httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-
-    if (!httpRequest) {
-      alert('Giving up :( Cannot create an XMLHTTP instance');
-      return false;
-    }
-
-    httpRequest.onreadystatechange = alertContents;
-    httpRequest.open('POST', url);
-    httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-    httpRequest.send('timer=' + encodeURIComponent(seconds));
+function showLoading(){
+    tableHistory.html('<tr><td colspan="2"><img src="images/loading2.gif"></td></tr>').css("text-align", "center");
+    tableTop.html('<tr><td colspan="2"><img src="images/loading2.gif"></td></tr>').css("text-align", "center");
 }
 
-function alertContents() {
-	if (httpRequest.readyState == XMLHttpRequest.DONE ) {
-		if(httpRequest.status == 200){
-			var data = JSON.parse(httpRequest.responseText);
-			var records = data.records;
-
-			var html = "";
-            records.forEach(function(item, i){
-                html += "<tr><td>" + item["date"] + "</td><td>" +  secToHHMMSS(item["seconds"])	 + "</td></tr>";
+/**
+* if seconds == 0 then get data only
+* if seconds > 0 get data and save seconds to DB
+*/
+function makeRequest(seconds){
+    showLoading();
+    $.ajax({
+        url: "php/coffee.php",
+        method: "post",
+        dataType: "json",
+        data: {timer: seconds},
+        success: function(data){
+            var html = "";
+            data.records.forEach(function(item, i){
+                html += "<tr><td>" + item["date"] + "</td><td>" +  secToHHMMSS(item["seconds"])  + "</td></tr>";
             });
-			$("table > tbody").html(html);
+            tableHistory.html(html);
 
-            if (data["max_date"] != undefined && data["max_seconds"] != undefined) {
-			    var html = "<tr><td>" + data["max_date"] + "</td><td>" + secToHHMMSS(data["max_seconds"]) + "</td></tr>";
-    			$("table#top > tbody").html(html);
-            }
-		} else {
-			alert("Something went wrong with XMLHttpRequest: \r\n" 
-				+ httpRequest.status + ": " + httpRequest.statusText);
-		}
-	}
+            html = "";
+            data.top.forEach(function(item, i){
+                html += "<tr><td>" + item["date"] + "</td><td>" + secToHHMMSS(item["seconds"]) + "</td></tr>";
+            });
+            tableTop.html(html);
+        }
+    });
+}
+
+function changeText(){
+    seconds++;
+    timer.html(secToHHMMSS(seconds, true));
 }
 
 function secToHHMMSS(seconds, animate){
-
-	var msec = parseInt(seconds, 10);
+    var msec = parseInt(seconds, 10);
     var sec = Math.floor(msec / 10);
 
     var hh = Math.floor(sec / 3600);
-	var mm = Math.floor((sec - hh * 3600) / 60);
-	var ss = Math.floor(sec - hh * 3600 - mm * 60);
+    var mm = Math.floor((sec - hh * 3600) / 60);
+    var ss = Math.floor(sec - hh * 3600 - mm * 60);
     var zz =  msec - hh * 36000 - mm * 600 - ss * 10;
 
-     // Sign : may disappear in results
     if (animate === true) {
-	    var delimiter = (ss % 2 === 0) ? ":" : " ";
+        var delimiter = (ss % 2 === 0) ? ":" : " ";
     } else {
         var delimiter = ":";
     }
 
-	if (hh < 10) {
-		hh = '0' + hh;
-	}
+    if (hh < 10) {
+        hh = '0' + hh;
+    }
 
-	if (mm < 10) {
-		mm = '0' + mm;
-	}
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
 
-	if (ss < 10) {
-		ss = '0' + ss;
-	}
+    if (ss < 10) {
+        ss = '0' + ss;
+    }
 
-	return hh + delimiter + mm + delimiter + ss + "." + zz;
+    return hh + delimiter + mm + delimiter + ss + "." + zz;
 }

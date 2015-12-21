@@ -2,7 +2,7 @@
 
 header('Content-Type: application/json');
 ini_set('display_errors', 0);
-require_once("db_timer_config.php");
+require_once("db_coffee_config.php");
 
 if (!isset($_POST['timer'])) {
     header("HTTP/1.0 400 Bad Request. There are no required POST parameter.");
@@ -42,29 +42,29 @@ try {
     $db->exec("SET time_zone='$offset';");
 
     // add new record
-    if ($seconds != -1) {
-        $sql = "INSERT INTO `without_coffee` (seconds) VALUES (:seconds)";
+    if ($seconds > 0) {
+        $sql = "INSERT INTO `". $table ."` (seconds) VALUES (:seconds)";
         $stmt = $db->prepare($sql);
         $stmt->bindValue(":seconds", $seconds);
         $stmt->execute();
     }
 
     // records list
-    $sql = "SELECT DATE_FORMAT(`date`, '%Y.%m.%d %H:%i') AS `date`, `seconds` FROM `without_coffee` ORDER BY `date` DESC LIMIT 10";
+    $sql = "SELECT DATE_FORMAT(`date`, '%Y.%m.%d %H:%i') AS `date`, `seconds` FROM `". $table ."` ORDER BY `date` DESC LIMIT 10";
     $stmt = $db->prepare($sql);
     $stmt->execute();
 
     $records = $stmt->fetchAll();
 
     // top result
-    $stmt = $db->prepare("SELECT DATE_FORMAT(`date`, '%Y.%m.%d %H:%i') AS `date`, `seconds` FROM `without_coffee` ORDER BY `seconds` DESC LIMIT 1");
+    $stmt = $db->prepare("SELECT DATE_FORMAT(`date`, '%Y.%m.%d %H:%i') AS `date`, `seconds` FROM `". $table ."` ORDER BY `seconds` DESC LIMIT 3");
     $stmt->execute();
     $top = $stmt->fetchAll();
     // print_r($top); exit();
     $return = array();
-    if (isset($top[0])) {
-        $return["max_date"] = $top[0]["date"];
-        $return["max_seconds"] = $top[0]["seconds"];
+    
+    if (isset($top)) {
+        $return["top"] = $top;
     }
 
     if (isset($records)) {
