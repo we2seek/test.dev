@@ -1,0 +1,82 @@
+<td>
+  <label>
+    <input name="radioBtns[1]" type="radio" class="sType_1" onclick="selectProduct('1');">
+    &nbsp;<strong>Установка</strong>
+  </label>
+  <div class="products" id="prods_1"></div>
+
+  <label>
+    <input name="radioBtns[2]" type="radio" class="sType_2" onclick="selectProduct('2');">
+    &nbsp;<strong>IT сервисы</strong>
+  </label>
+  <div class="products" id="prods_2"></div>
+
+  <label>
+    <input name="radioBtns[3]" type="radio" class="sType_3" onclick="selectProduct('3');">
+    &nbsp;<strong>Профилактика</strong>
+  </label><div class="products" id="prods_3"></div>
+
+  <label>
+    <input name="radioBtns[4]" type="radio" class="sType_4" onclick="selectProduct('4');">
+    &nbsp;<strong>Ремонт</strong>
+  </label>
+  <div class="products" id="prods_4"></div>
+
+  <span id="err_container"></span>
+</td>
+
+
+
+<fieldset>
+  <legend>Gender</legend>
+  <label for="gender_male">
+    <input type="radio" id="gender_male" value="m" name="gender" required="" aria-required="true">Male
+  </label>
+
+  <label for="gender_female">
+    <input type="radio" id="gender_female" value="f" name="gender">Female
+  </label>
+
+  <label for="gender" class="error">Please select your gender</label>
+</fieldset>
+
+
+<form id="myform" >
+  <label for='Color'>Select one color:</label>
+ <p class='container'>
+<label><input type='radio' name='Color' value='Red' />Red</label>
+<label><input type='radio' name='Color' value='Green' />Green</label>
+<label><input type='radio' name='Color' value='Blue' />Blue</label>
+  </p>
+<input type="submit" name="submit" value="Submit">
+</form>
+
+$(function()
+  {
+    $('#myform').validate(
+      {
+        rules:
+        {
+          Color:{ required:true }
+        },
+        messages:
+        {
+          Color:
+          {
+            required:"Please select a Color<br/>"
+          }
+        },
+        errorPlacement: function(error, element) 
+        {
+            if ( element.is(":radio") ) 
+            {
+                error.appendTo( element.parents('.container') );
+            }
+            else 
+            { // This is the default behavior 
+                error.insertAfter( element );
+            }
+         }
+      });
+    
+  });
