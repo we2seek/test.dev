@@ -10,16 +10,21 @@ h1, h2 {
 }
 
 .btn.outline {
-	width: 100%;
+    width: 50%;
+    border: 2px solid #33a6cc;
+    color: #0099cc;
     background: none;
-    letter-spacing: 1px;
-	text-transform: uppercase;
-	font-weight: 700;
+    margin: 0 auto;
 }
 
 .btn-primary.outline {
     border: 2px solid white;
     color: #0099cc;
+    width: 100%;
+    background: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 700;
 }
 
 .btn-primary.outline:hover{
@@ -33,4 +38,5 @@ h1, h2 {
     background: none;
     box-shadow: none;
 }
+
 
