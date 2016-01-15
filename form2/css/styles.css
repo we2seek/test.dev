@@ -1,0 +1,63 @@
+* {
+	margin: ;
+	padding: 0;
+}
+
+#multiform {
+	width: 600px;
+	height: 500px;
+	background-color: silver;
+	margin: 0px auto;
+/*    position: relative;*/
+}
+
+#multiform div.left{
+	background-color: orangered;
+	float: left;
+	width: 70%;
+    height: 500px;
+}
+
+#multiform div.right{
+	background-color: green;
+	float: right;
+	width: 30%;
+    height: 100%;
+}
+
+/* Buttons */
+div.foot {
+    position: relative;
+    background-color: blueviolet;
+}
+
+div.foot > div {
+/*	float: left;*/
+/*    position: relative;*/
+}
+
+div.foot .left-btn {
+    width: 32%;
+    background-color: yellow;
+    position:absolute;
+    bottom: 0;
+    left: 0;
+}
+
+div.foot .center-btn {
+    width: 36%;
+    background-color: springgreen;
+}
+
+div.foot .right-btn {
+    width: 32%;
+    background-color: yellow;
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+fieldset:not(:first-of-type) {
+	display: none;
+}

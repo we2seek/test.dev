@@ -1,0 +1,308 @@
+<div class="dialog-container">
+    <header class="dialog-header">
+      <h2 class="heading-c"><span>Book a </span>Repair Appointment</h2>
+      <a href="#close-dialog" title="Close" class="dialog-close" data-dialog-close-trigger="click">
+        <svg class="icon icon-close" viewBox="0 0 28 28">
+          <path d="M15.414,14.001L27.706,1.708c0.392-0.391,0.392-1.023,0-1.414c-0.391-0.391-1.022-0.391-1.413,0L14,12.587L1.708,0.294 c-0.391-0.391-1.023-0.391-1.414,0c-0.391,0.391-0.391,1.023,0,1.414l12.293,12.293L0.293,26.294c-0.391,0.391-0.391,1.022,0,1.414 C0.488,27.902,0.744,28.001,1,28.001c0.256,0,0.512-0.099,0.707-0.293L14,15.415l12.293,12.293c0.194,0.194,0.45,0.293,0.707,0.293 c0.256,0,0.512-0.099,0.706-0.293c0.392-0.392,0.392-1.023,0-1.414L15.414,14.001z"></path>
+          <image src="/media/app/close.9b572287b4c463d1.png"></image>
+        </svg>
+      </a>
+    </header><div class="dialog-content " role="document"><form action="#appliance-form" method="post" novalidate="novalidate" class="doors standard hidden">
+
+  <fieldset name="scheduler-doors">
+    <legend class="heading-d">How can we help you today?</legend>
+    <ul>
+      <li class="door">
+        <button type="button" title="Repair" data-door-type="repair" class="button button-icon icon-repair">
+
+            <!-- TODO - CJ - hardcoding copies of tools.svg and calendar.svg for now -->
+            <svg class="icon-inline door-icon door-icon-tools" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+              <path d="M4.9 47.02c-0.96 0-2.37-0.12-3.44-1.2 -0.92-0.92-1.43-2.15-1.43-3.46s0.51-2.54 1.44-3.46c0.38-0.38 1-0.38 1.39 0 0.38 0.38 0.38 1 0 1.39 -0.55 0.56-0.86 1.29-0.86 2.08 0 0.79 0.31 1.52 0.86 2.08 0.44 0.44 1.06 0.63 2.06 0.63 1.02 0 1.66-0.19 2.1-0.63 0.38-0.38 1-0.38 1.39 0 0.38 0.38 0.38 1 0 1.39C7.3 46.9 5.88 47.02 4.9 47.02zM9.07 46.11L9.07 46.11c-0.26 0-0.51-0.1-0.69-0.29l-6.93-6.93c-0.38-0.38-0.38-1 0-1.38l20.09-20.09c0.37-0.37 1.02-0.37 1.39 0l6.93 6.93c0.19 0.19 0.29 0.43 0.29 0.69 0 0.26-0.1 0.51-0.29 0.69L9.77 45.82C9.58 46 9.33 46.11 9.07 46.11zM3.53 38.2l5.54 5.54 18.7-18.7 -5.54-5.54L3.53 38.2zM7.69 40.57c-0.25 0-0.5-0.1-0.69-0.29 -0.38-0.38-0.38-1 0-1.39l15.93-15.93c0.38-0.38 1-0.38 1.39 0 0.38 0.38 0.38 1 0 1.39L8.38 40.28C8.19 40.47 7.94 40.57 7.69 40.57zM27.08 23.94c-0.25 0-0.5-0.1-0.69-0.29 -0.38-0.38-0.38-1 0-1.38l9-9.01c0.15-0.15 0.35-0.25 0.55-0.28l4.36-0.62 4.24-7.87 -1.6-1.37 -8.04 3.88 -0.62 4.33c-0.03 0.21-0.13 0.4-0.28 0.55l-9.01 9c-0.38 0.38-1 0.38-1.38 0 -0.38-0.38-0.38-1 0-1.38l8.77-8.77 0.65-4.53c0.05-0.32 0.25-0.6 0.55-0.74l9.09-4.38c0.35-0.17 0.77-0.11 1.06 0.14l2.68 2.3c0.35 0.3 0.44 0.8 0.23 1.21l-4.85 9.01c-0.15 0.27-0.42 0.46-0.72 0.51l-4.53 0.65 -8.77 8.77C27.58 23.85 27.33 23.94 27.08 23.94z"></path>
+              <path d="M40.16 47.02c-4.32 0-7.84-3.51-7.84-7.84 0-4.32 3.52-7.84 7.84-7.84S48 34.86 48 39.18C48 43.51 44.48 47.02 40.16 47.02zM40.16 33.31c-3.24 0-5.88 2.64-5.88 5.88 0 3.24 2.64 5.88 5.88 5.88s5.88-2.63 5.88-5.88C46.04 35.94 43.4 33.31 40.16 33.31zM40.16 43.1c-2.16 0-3.92-1.76-3.92-3.92 0-2.16 1.76-3.92 3.92-3.92s3.92 1.76 3.92 3.92C44.08 41.35 42.32 43.1 40.16 43.1zM40.16 37.23c-1.08 0-1.96 0.88-1.96 1.96s0.88 1.96 1.96 1.96 1.96-0.88 1.96-1.96S41.24 37.23 40.16 37.23zM7.84 15.67C3.52 15.67 0 12.16 0 7.84 0 5.2 1.32 2.58 3.36 1.16c0.3-0.21 0.69-0.23 1.01-0.07 0.32 0.17 0.53 0.5 0.53 0.87v5.27l2.94 1.47 2.94-1.47V1.96c0-0.36 0.2-0.7 0.53-0.87 0.32-0.17 0.71-0.14 1.01 0.07 2.04 1.42 3.36 4.05 3.36 6.68C15.67 12.16 12.16 15.67 7.84 15.67zM2.94 4.42c-0.62 1-0.98 2.21-0.98 3.42 0 3.24 2.64 5.88 5.88 5.88 3.24 0 5.88-2.64 5.88-5.88 0-1.21-0.36-2.42-0.98-3.42v3.42c0 0.37-0.21 0.71-0.54 0.88l-3.92 1.96c-0.28 0.14-0.6 0.14-0.88 0L3.48 8.71C3.15 8.55 2.94 8.21 2.94 7.84V4.42zM33.31 40.16c-0.25 0-0.5-0.1-0.69-0.29l-8.82-8.82c-0.38-0.38-0.38-1 0-1.38 0.38-0.38 1-0.38 1.39 0l8.82 8.82c0.38 0.39 0.38 1 0 1.39C33.81 40.07 33.56 40.16 33.31 40.16zM16.65 23.51c-0.25 0-0.5-0.1-0.69-0.29l-7.84-7.84c-0.38-0.38-0.38-1 0-1.38 0.38-0.38 1-0.38 1.39 0l7.84 7.84c0.38 0.38 0.38 1 0 1.39C17.16 23.42 16.9 23.51 16.65 23.51zM21.55 19.59c-0.23 0-0.46-0.08-0.64-0.24l-7.84-6.86c-0.41-0.36-0.45-0.97-0.09-1.38 0.36-0.41 0.98-0.45 1.38-0.09l7.84 6.86c0.41 0.36 0.45 0.98 0.09 1.38C22.1 19.48 21.82 19.59 21.55 19.59zM38.2 33.31c-0.21 0-0.43-0.07-0.61-0.21l-9.8-7.84c-0.42-0.34-0.49-0.95-0.15-1.38 0.34-0.42 0.96-0.49 1.38-0.15l9.8 7.84c0.42 0.34 0.49 0.95 0.15 1.37C38.78 33.18 38.49 33.31 38.2 33.31z"></path>
+            </svg>
+
+            <svg class="icon-inline door-icon door-icon-calendar" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+              <path d="M40.5 7.24h-0.38V3.57C40.12 1.6 38.52 0 36.55 0c-1.97 0-3.57 1.6-3.57 3.57v3.67H27.59V3.57C27.59 1.6 25.99 0 24.02 0c-1.97 0-3.57 1.6-3.57 3.57v3.67h-5.39V3.57c0-1.97-1.6-3.57-3.57-3.57 -1.97 0-3.57 1.6-3.57 3.57v3.67H7.5c-3.69 0-6.68 3-6.68 6.69v27.39C0.82 45 3.82 48 7.5 48h33c3.69 0 6.69-3 6.69-6.68V13.92C47.18 10.24 44.19 7.24 40.5 7.24zM34.98 3.57c0-0.86 0.7-1.57 1.57-1.57s1.56 0.7 1.56 1.57v3.67V8.24v3.74c0 0.86-0.7 1.57-1.56 1.57s-1.56-0.7-1.56-1.56V8.24 7.24 3.57zM22.45 3.57c0-0.86 0.7-1.57 1.57-1.57 0.86 0 1.57 0.7 1.57 1.57v3.67V8.24v3.74c0 0.86-0.7 1.57-1.57 1.57 -0.86 0-1.57-0.7-1.57-1.56V8.24 7.24 3.57zM9.92 3.57c0-0.86 0.7-1.57 1.57-1.57 0.86 0 1.57 0.7 1.57 1.57v3.67V8.24v3.74c0 0.86-0.7 1.57-1.56 1.57 -0.86 0-1.57-0.7-1.57-1.56V8.24 7.24 3.57zM7.5 9.24h0.42v2.73c0 1.97 1.6 3.57 3.57 3.57 1.97 0 3.57-1.6 3.57-3.57V9.24h5.39v2.73c0 1.97 1.6 3.57 3.57 3.57 1.97 0 3.57-1.6 3.57-3.57V9.24h5.39v2.73c0 1.97 1.6 3.57 3.57 3.57 1.97 0 3.57-1.6 3.57-3.57V9.24h0.38c2.58 0 4.68 2.1 4.68 4.68v5.85H2.82v-5.85C2.82 11.34 4.92 9.24 7.5 9.24zM40.5 46H7.5c-2.58 0-4.68-2.1-4.68-4.68V21.78h42.36v19.54C45.18 43.9 43.08 46 40.5 46zM7.95 41.48h32.44V25.27H7.95V41.48zM9.95 34.53h4.25v4.95H9.95V34.53zM28.24 34.53h4.01v4.95h-4.01V34.53zM26.24 39.48h-4.01v-4.95h4.01V39.48zM28.24 32.53v-5.26h4.01v5.26H28.24zM26.24 32.53h-4.01v-5.26h4.01V32.53zM20.22 32.53h-4.01v-5.26h4.01V32.53zM20.22 34.53v4.95h-4.01v-4.95H20.22zM34.26 39.48v-4.95h4.13v4.95H34.26L34.26 39.48zM38.38 32.53h-4.13v-5.26h4.13V32.53zM14.21 27.27v5.26H9.95v-5.26H14.21z"></path>
+            </svg>
+
+            Repair
+        </button>
+        <div class="door-description">
+            Is your appliance broken? Select Repair.
+        </div>
+      </li>
+      <li class="door">
+        <button type="button" title="Maintenance" data-door-type="maintain" class="button button-icon icon-maintain">
+
+            <!-- TODO - CJ - hardcoding copies of tools.svg and calendar.svg for now -->
+            <svg class="icon-inline door-icon door-icon-tools" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+              <path d="M4.9 47.02c-0.96 0-2.37-0.12-3.44-1.2 -0.92-0.92-1.43-2.15-1.43-3.46s0.51-2.54 1.44-3.46c0.38-0.38 1-0.38 1.39 0 0.38 0.38 0.38 1 0 1.39 -0.55 0.56-0.86 1.29-0.86 2.08 0 0.79 0.31 1.52 0.86 2.08 0.44 0.44 1.06 0.63 2.06 0.63 1.02 0 1.66-0.19 2.1-0.63 0.38-0.38 1-0.38 1.39 0 0.38 0.38 0.38 1 0 1.39C7.3 46.9 5.88 47.02 4.9 47.02zM9.07 46.11L9.07 46.11c-0.26 0-0.51-0.1-0.69-0.29l-6.93-6.93c-0.38-0.38-0.38-1 0-1.38l20.09-20.09c0.37-0.37 1.02-0.37 1.39 0l6.93 6.93c0.19 0.19 0.29 0.43 0.29 0.69 0 0.26-0.1 0.51-0.29 0.69L9.77 45.82C9.58 46 9.33 46.11 9.07 46.11zM3.53 38.2l5.54 5.54 18.7-18.7 -5.54-5.54L3.53 38.2zM7.69 40.57c-0.25 0-0.5-0.1-0.69-0.29 -0.38-0.38-0.38-1 0-1.39l15.93-15.93c0.38-0.38 1-0.38 1.39 0 0.38 0.38 0.38 1 0 1.39L8.38 40.28C8.19 40.47 7.94 40.57 7.69 40.57zM27.08 23.94c-0.25 0-0.5-0.1-0.69-0.29 -0.38-0.38-0.38-1 0-1.38l9-9.01c0.15-0.15 0.35-0.25 0.55-0.28l4.36-0.62 4.24-7.87 -1.6-1.37 -8.04 3.88 -0.62 4.33c-0.03 0.21-0.13 0.4-0.28 0.55l-9.01 9c-0.38 0.38-1 0.38-1.38 0 -0.38-0.38-0.38-1 0-1.38l8.77-8.77 0.65-4.53c0.05-0.32 0.25-0.6 0.55-0.74l9.09-4.38c0.35-0.17 0.77-0.11 1.06 0.14l2.68 2.3c0.35 0.3 0.44 0.8 0.23 1.21l-4.85 9.01c-0.15 0.27-0.42 0.46-0.72 0.51l-4.53 0.65 -8.77 8.77C27.58 23.85 27.33 23.94 27.08 23.94z"></path>
+              <path d="M40.16 47.02c-4.32 0-7.84-3.51-7.84-7.84 0-4.32 3.52-7.84 7.84-7.84S48 34.86 48 39.18C48 43.51 44.48 47.02 40.16 47.02zM40.16 33.31c-3.24 0-5.88 2.64-5.88 5.88 0 3.24 2.64 5.88 5.88 5.88s5.88-2.63 5.88-5.88C46.04 35.94 43.4 33.31 40.16 33.31zM40.16 43.1c-2.16 0-3.92-1.76-3.92-3.92 0-2.16 1.76-3.92 3.92-3.92s3.92 1.76 3.92 3.92C44.08 41.35 42.32 43.1 40.16 43.1zM40.16 37.23c-1.08 0-1.96 0.88-1.96 1.96s0.88 1.96 1.96 1.96 1.96-0.88 1.96-1.96S41.24 37.23 40.16 37.23zM7.84 15.67C3.52 15.67 0 12.16 0 7.84 0 5.2 1.32 2.58 3.36 1.16c0.3-0.21 0.69-0.23 1.01-0.07 0.32 0.17 0.53 0.5 0.53 0.87v5.27l2.94 1.47 2.94-1.47V1.96c0-0.36 0.2-0.7 0.53-0.87 0.32-0.17 0.71-0.14 1.01 0.07 2.04 1.42 3.36 4.05 3.36 6.68C15.67 12.16 12.16 15.67 7.84 15.67zM2.94 4.42c-0.62 1-0.98 2.21-0.98 3.42 0 3.24 2.64 5.88 5.88 5.88 3.24 0 5.88-2.64 5.88-5.88 0-1.21-0.36-2.42-0.98-3.42v3.42c0 0.37-0.21 0.71-0.54 0.88l-3.92 1.96c-0.28 0.14-0.6 0.14-0.88 0L3.48 8.71C3.15 8.55 2.94 8.21 2.94 7.84V4.42zM33.31 40.16c-0.25 0-0.5-0.1-0.69-0.29l-8.82-8.82c-0.38-0.38-0.38-1 0-1.38 0.38-0.38 1-0.38 1.39 0l8.82 8.82c0.38 0.39 0.38 1 0 1.39C33.81 40.07 33.56 40.16 33.31 40.16zM16.65 23.51c-0.25 0-0.5-0.1-0.69-0.29l-7.84-7.84c-0.38-0.38-0.38-1 0-1.38 0.38-0.38 1-0.38 1.39 0l7.84 7.84c0.38 0.38 0.38 1 0 1.39C17.16 23.42 16.9 23.51 16.65 23.51zM21.55 19.59c-0.23 0-0.46-0.08-0.64-0.24l-7.84-6.86c-0.41-0.36-0.45-0.97-0.09-1.38 0.36-0.41 0.98-0.45 1.38-0.09l7.84 6.86c0.41 0.36 0.45 0.98 0.09 1.38C22.1 19.48 21.82 19.59 21.55 19.59zM38.2 33.31c-0.21 0-0.43-0.07-0.61-0.21l-9.8-7.84c-0.42-0.34-0.49-0.95-0.15-1.38 0.34-0.42 0.96-0.49 1.38-0.15l9.8 7.84c0.42 0.34 0.49 0.95 0.15 1.37C38.78 33.18 38.49 33.31 38.2 33.31z"></path>
+            </svg>
+
+            <svg class="icon-inline door-icon door-icon-calendar" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+              <path d="M40.5 7.24h-0.38V3.57C40.12 1.6 38.52 0 36.55 0c-1.97 0-3.57 1.6-3.57 3.57v3.67H27.59V3.57C27.59 1.6 25.99 0 24.02 0c-1.97 0-3.57 1.6-3.57 3.57v3.67h-5.39V3.57c0-1.97-1.6-3.57-3.57-3.57 -1.97 0-3.57 1.6-3.57 3.57v3.67H7.5c-3.69 0-6.68 3-6.68 6.69v27.39C0.82 45 3.82 48 7.5 48h33c3.69 0 6.69-3 6.69-6.68V13.92C47.18 10.24 44.19 7.24 40.5 7.24zM34.98 3.57c0-0.86 0.7-1.57 1.57-1.57s1.56 0.7 1.56 1.57v3.67V8.24v3.74c0 0.86-0.7 1.57-1.56 1.57s-1.56-0.7-1.56-1.56V8.24 7.24 3.57zM22.45 3.57c0-0.86 0.7-1.57 1.57-1.57 0.86 0 1.57 0.7 1.57 1.57v3.67V8.24v3.74c0 0.86-0.7 1.57-1.57 1.57 -0.86 0-1.57-0.7-1.57-1.56V8.24 7.24 3.57zM9.92 3.57c0-0.86 0.7-1.57 1.57-1.57 0.86 0 1.57 0.7 1.57 1.57v3.67V8.24v3.74c0 0.86-0.7 1.57-1.56 1.57 -0.86 0-1.57-0.7-1.57-1.56V8.24 7.24 3.57zM7.5 9.24h0.42v2.73c0 1.97 1.6 3.57 3.57 3.57 1.97 0 3.57-1.6 3.57-3.57V9.24h5.39v2.73c0 1.97 1.6 3.57 3.57 3.57 1.97 0 3.57-1.6 3.57-3.57V9.24h5.39v2.73c0 1.97 1.6 3.57 3.57 3.57 1.97 0 3.57-1.6 3.57-3.57V9.24h0.38c2.58 0 4.68 2.1 4.68 4.68v5.85H2.82v-5.85C2.82 11.34 4.92 9.24 7.5 9.24zM40.5 46H7.5c-2.58 0-4.68-2.1-4.68-4.68V21.78h42.36v19.54C45.18 43.9 43.08 46 40.5 46zM7.95 41.48h32.44V25.27H7.95V41.48zM9.95 34.53h4.25v4.95H9.95V34.53zM28.24 34.53h4.01v4.95h-4.01V34.53zM26.24 39.48h-4.01v-4.95h4.01V39.48zM28.24 32.53v-5.26h4.01v5.26H28.24zM26.24 32.53h-4.01v-5.26h4.01V32.53zM20.22 32.53h-4.01v-5.26h4.01V32.53zM20.22 34.53v4.95h-4.01v-4.95H20.22zM34.26 39.48v-4.95h4.13v4.95H34.26L34.26 39.48zM38.38 32.53h-4.13v-5.26h4.13V32.53zM14.21 27.27v5.26H9.95v-5.26H14.21z"></path>
+            </svg>
+
+            Maintenance
+        </button>
+        <div class="door-description">
+            Is your appliance functioning, but in need of a tune-up? Select Maintain.
+        </div>
+      </li>
+    </ul>
+  </fieldset>
+
+</form><div class="wizard scroll-container has-fixed-nav">
+  <ol class="wizard-steps">
+    <li class="wizard-step active"><form id="scheduler-appliance-name-form" action="#appliance-name-form" method="post" novalidate="novalidate" class="wizard-step-form appliance-info-form standard">
+
+  <fieldset name="scheduler-scheduler-appliance-name" data-group-name="applianceName">
+    <legend class="heading-c appliance-info-option-list-heading">Which appliance is broken?</legend>
+        <ol class="appliance-info-option-list top-selections-list"><li class="top-selection"><input type="radio" id="scheduler-appliance-info-top-selection-appliance-name-dishwasher-field" name="applianceName" value="Dishwasher" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-top-selection-appliance-name-dishwasher" for="scheduler-appliance-info-top-selection-appliance-name-dishwasher-field" class="appliance-info-radiobutton-label icon-dishwasher"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <path stroke-miterlimit="10" stroke-width="2" stroke="currentColor" fill="none" d="M42.9 46c0 0.6-0.4 1-1 1H6.1c-0.5 0-1-0.4-1-1V2c0-0.5 0.5-1 1-1h35.8c0.6 0 1 0.5 1 1V46z"></path>
+  <line stroke-miterlimit="10" stroke-width="2" stroke="currentColor" fill="none" y2="13" x2="42.6" y1="13" x1="5.4"></line>
+  <path stroke-miterlimit="10" stroke-width="1.5" stroke="currentColor" fill="none" d="M30.2 8.4c0 0.6-0.4 1-1 1H10c-0.5 0-1-0.4-1-1V5.6c0-0.5 0.5-1 1-1h19.2c0.6 0 1 0.5 1 1V8.4z"></path>
+  <line stroke-miterlimit="10" stroke-width="1.5" stroke="currentColor" fill="none" y2="4.7" x2="25.6" y1="9.7" x1="25.6"></line>
+  <line stroke-miterlimit="10" stroke-width="1.5" stroke="currentColor" fill="none" y2="4.7" x2="19.6" y1="9.7" x1="19.6"></line>
+  <line stroke-miterlimit="10" stroke-width="1.5" stroke="currentColor" fill="none" y2="4.7" x2="13.6" y1="9.7" x1="13.6"></line>
+  <circle stroke-miterlimit="10" stroke-width="1.5" stroke="currentColor" fill="none" r="2.3" cy="7.1" cx="36.7"></circle>
+</svg><span>Dishwasher</span></label></li><li class="top-selection"><input type="radio" id="scheduler-appliance-info-top-selection-appliance-name-washer-field" name="applianceName" value="Washer" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-top-selection-appliance-name-washer" for="scheduler-appliance-info-top-selection-appliance-name-washer-field" class="appliance-info-radiobutton-label icon-washer"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+<path d="M5.562,4.226v4.036h10.423V4.226H5.562z M36.025,6.649c0,0.444,0.363,0.807,0.802,0.807c0.442,0,0.807-0.362,0.807-0.807 c0-0.449-0.363-0.807-0.807-0.807C36.389,5.843,36.025,6.2,36.025,6.649z M40.036,6.649c0,0.444,0.356,0.807,0.799,0.807 c0.445,0,0.803-0.362,0.803-0.807c0-0.449-0.357-0.807-0.803-0.807C40.393,5.843,40.036,6.2,40.036,6.649z M13.836,26.824 c0,5.796,4.887,10.975,10.964,11.035c5.759,0.048,10.834-4.932,10.965-11.035c0.129-6.002-5.206-11.034-10.965-11.034 C19.042,15.79,13.853,20.753,13.836,26.824z M15.838,26.824c0-4.984,4.01-9.021,8.962-9.021c4.118,0,7.588,2.792,8.637,6.604h-1.422 c-0.438,0-0.801,0.357-0.801,0.807v3.227c0,0.447,0.36,0.806,0.801,0.806h1.422c-1.049,3.81-4.519,6.603-8.637,6.603 C19.85,35.846,15.838,31.809,15.838,26.824z M32.821,25.212c0.438,0,0.801,0.356,0.801,0.806v1.613c0,0.442-0.362,0.807-0.801,0.807 c-0.443,0-0.806-0.363-0.806-0.807v-1.613C32.016,25.568,32.376,25.212,32.821,25.212z M2.354,1v46h43.293V1H2.354z M4.496,3.153 h39.007v6.181H4.496V3.153z M43.503,11.223v33.622H4.496V11.223H43.503z"></path>
+</svg><span>Washer</span></label></li><li class="top-selection"><input type="radio" id="scheduler-appliance-info-top-selection-appliance-name-refrigerator-field" name="applianceName" value="Refrigerator" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-top-selection-appliance-name-refrigerator" for="scheduler-appliance-info-top-selection-appliance-name-refrigerator-field" class="appliance-info-radiobutton-label icon-refrigerator"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <path d="M39.8 42.6c0 0.6-0.4 1-1 1H9.2c-0.5 0-1-0.4-1-1V2c0-0.5 0.5-1 1-1h29.6c0.6 0 1 0.5 1 1V42.6z" stroke-miterlimit="10" stroke-width="2" stroke="currentColor" fill="none"></path>
+  <path d="M17 46c0 0.6-0.4 1-1 1h-2.1c-0.5 0-1-0.4-1-1v-1.4c0-0.5 0.5-1 1-1h2.1c0.6 0 1 0.5 1 1V46z" stroke-miterlimit="10" stroke-width="2" stroke="currentColor" fill="none"></path>
+  <path d="M35.1 46c0 0.6-0.4 1-1 1h-2.1c-0.5 0-1-0.4-1-1v-1.4c0-0.5 0.5-1 1-1h2.1c0.6 0 1 0.5 1 1V46z" stroke-miterlimit="10" stroke-width="2" stroke="currentColor" fill="none"></path>
+  <line y2="19.6" x2="39.8" y1="19.6" x1="8.2" stroke-miterlimit="10" stroke-width="2" stroke="currentColor" fill="none"></line>
+  <line y2="14.7" x2="13.1" y1="7.4" x1="13.1" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" fill="none"></line>
+  <line y2="32.7" x2="13.1" y1="25.4" x1="13.1" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" fill="none"></line>
+</svg><span>Refrigerator</span></label></li><li class="top-selection"><input type="radio" id="scheduler-appliance-info-top-selection-appliance-name-dryer-field" name="applianceName" value="Dryer" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-top-selection-appliance-name-dryer" for="scheduler-appliance-info-top-selection-appliance-name-dryer-field" class="appliance-info-radiobutton-label icon-dryer"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <path stroke-miterlimit="10" stroke-width="2" stroke="currentColor" fill="none" d="M45.5 46c0 0.6-0.4 1-1 1H3.5c-0.5 0-1-0.4-1-1V2c0-0.5 0.5-1 1-1h40.9c0.6 0 1 0.5 1 1V46z"></path>
+  <path stroke-miterlimit="10" stroke-width="2" stroke="currentColor" fill="none" d="M38.1 36.2c0 0.6-0.4 1-1 1H10.9c-0.5 0-1-0.4-1-1V17.2c0-0.5 0.5-1 1-1H37.1c0.6 0 1 0.5 1 1V36.2z"></path>
+  <path stroke-miterlimit="10" stroke-width="2" stroke="currentColor" fill="none" d="M12 24c0.6 0 1 0.5 1 1v3.9c0 0.6-0.4 1-1 1h-1c-0.5 0-1-0.4-1-1V25c0-0.5 0.5-1 1-1H12z"></path>
+  <line stroke-miterlimit="10" stroke-width="2" stroke="currentColor" fill="none" y2="9.9" x2="45.5" y1="9.9" x1="2.5"></line>
+  <rect height="3.7" width="10.9" y="3.7" x="32.3"></rect>
+  <circle r="1.4" cy="5.5" cx="10.5"></circle>
+  <circle r="1.4" cy="5.5" cx="6.2"></circle>
+</svg><span>Dryer</span></label></li><li class="top-selection"><input type="radio" id="scheduler-appliance-info-top-selection-appliance-name-range-field" name="applianceName" value="Range" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-top-selection-appliance-name-range" for="scheduler-appliance-info-top-selection-appliance-name-range-field" class="appliance-info-radiobutton-label icon-range"><svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 48 48">
+  <path stroke-miterlimit="10" stroke-width="2" stroke="currentColor" fill="none" d="M45.5 43.3c0 0.6-0.4 1-1 1H3.5c-0.5 0-1-0.4-1-1V4.9c0-0.5 0.5-1 1-1h40.9c0.6 0 1 0.5 1 1V43.3z"></path>
+  <path stroke-miterlimit="10" stroke-width="2" stroke="currentColor" fill="none" d="M37.7 35.5c0 0.6-0.4 1-1 1H11.3c-0.5 0-1-0.4-1-1V25c0-0.5 0.5-1 1-1h25.5c0.6 0 1 0.5 1 1V35.5z"></path>
+  <path stroke-miterlimit="10" stroke-width="1.5" stroke="currentColor" fill="none" d="M18 2.9c0 0.6-0.4 1-1 1h-6.9c-0.5 0-1-0.4-1-1v-1c0-0.5 0.5-1 1-1h6.9c0.6 0 1 0.5 1 1V2.9z"></path>
+  <path stroke-miterlimit="10" stroke-width="1.5" stroke="currentColor" fill="none" d="M38.9 2.9c0 0.6-0.4 1-1 1h-6.9c-0.5 0-1-0.4-1-1v-1c0-0.5 0.5-1 1-1h6.9c0.6 0 1 0.5 1 1V2.9z"></path>
+  <line stroke-miterlimit="10" stroke-width="2" stroke="currentColor" fill="none" y2="15.4" x2="45.5" y1="15.4" x1="2.5"></line>
+  <line stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" fill="none" y2="46.8" x2="7.5" y1="44.3" x1="7.5"></line>
+  <line stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" fill="none" y2="46.8" x2="40.5" y1="44.3" x1="40.5"></line>
+  <circle stroke-miterlimit="10" stroke-width="1.5" stroke="currentColor" fill="none" r="2.2" cy="9.8" cx="9.3"></circle>
+  <circle stroke-miterlimit="10" stroke-width="1.5" stroke="currentColor" fill="none" r="2.2" cy="9.8" cx="24"></circle>
+  <circle stroke-miterlimit="10" stroke-width="1.5" stroke="currentColor" fill="none" r="2.2" cy="9.8" cx="38.7"></circle>
+</svg><span>Range</span></label></li><li class="top-selection"><input type="radio" id="scheduler-appliance-info-top-selection-appliance-name-oven-field" name="applianceName" value="Oven" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-top-selection-appliance-name-oven" for="scheduler-appliance-info-top-selection-appliance-name-oven-field" class="appliance-info-radiobutton-label icon-oven"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <path stroke-miterlimit="10" stroke-width="2" stroke="currentColor" fill="none" d="M46.1 46c0 0.6-0.4 1-1 1H2.9c-0.5 0-1-0.4-1-1V2c0-0.5 0.5-1 1-1h42.2c0.6 0 1 0.5 1 1V46z"></path>
+  <path stroke-miterlimit="10" stroke-width="2" stroke="currentColor" fill="none" d="M40.9 38.2c0 0.6-0.4 1-1 1H8.1c-0.5 0-1-0.4-1-1V21c0-0.5 0.5-1 1-1h31.9c0.6 0 1 0.5 1 1V38.2z"></path>
+  <line stroke-miterlimit="10" stroke-width="2" stroke="currentColor" fill="none" y2="10.8" x2="46.2" y1="10.8" x1="1.8"></line>
+  <line stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="currentColor" fill="none" y2="15.4" x2="42" y1="15.4" x1="6"></line>
+  <circle stroke-miterlimit="10" stroke-width="1.5" stroke="currentColor" fill="none" r="1.6" cy="6.1" cx="7.8"></circle>
+  <circle stroke-miterlimit="10" stroke-width="1.5" stroke="currentColor" fill="none" r="1.6" cy="6.1" cx="18.6"></circle>
+  <circle stroke-miterlimit="10" stroke-width="1.5" stroke="currentColor" fill="none" r="1.6" cy="6.1" cx="29.4"></circle>
+  <circle stroke-miterlimit="10" stroke-width="1.5" stroke="currentColor" fill="none" r="1.6" cy="6.1" cx="40.2"></circle>
+</svg><span>Oven</span></label></li></ol>
+          <hr>
+          <h3 class="ruled-heading">Or select from the list below:</h3>
+        <ul class="appliance-info-option-list additional-options-list">
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-air-conditioner:-window,-room-installed-field" name="applianceName" value="Air Conditioner: Window, Room Installed" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-air-conditioner:-window,-room-installed" for="scheduler-appliance-info-appliance-name-air-conditioner:-window,-room-installed-field" class="appliance-info-radiobutton-label icon-air-conditioner:-window,-room-installed">Air Conditioner: Window, Room Installed</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-air-conditioner:-window,-over-11,500-btu-field" name="applianceName" value="Air Conditioner: Window, Over 11,500 BTU" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-air-conditioner:-window,-over-11,500-btu" for="scheduler-appliance-info-appliance-name-air-conditioner:-window,-over-11,500-btu-field" class="appliance-info-radiobutton-label icon-air-conditioner:-window,-over-11,500-btu">Air Conditioner: Window, Over 11,500 BTU</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-boiler-field" name="applianceName" value="Boiler" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-boiler" for="scheduler-appliance-info-appliance-name-boiler-field" class="appliance-info-radiobutton-label icon-boiler">Boiler</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-central-air-conditioner-field" name="applianceName" value="Central Air Conditioner" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-central-air-conditioner" for="scheduler-appliance-info-appliance-name-central-air-conditioner-field" class="appliance-info-radiobutton-label icon-central-air-conditioner">Central Air Conditioner</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-cooktop-field" name="applianceName" value="Cooktop" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-cooktop" for="scheduler-appliance-info-appliance-name-cooktop-field" class="appliance-info-radiobutton-label icon-cooktop">Cooktop</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-dishwasher-field" name="applianceName" value="Dishwasher" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-dishwasher" for="scheduler-appliance-info-appliance-name-dishwasher-field" class="appliance-info-radiobutton-label icon-dishwasher">Dishwasher</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-dryer-field" name="applianceName" value="Dryer" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-dryer" for="scheduler-appliance-info-appliance-name-dryer-field" class="appliance-info-radiobutton-label icon-dryer">Dryer</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-elliptical-machine-field" name="applianceName" value="Elliptical Machine" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-elliptical-machine" for="scheduler-appliance-info-appliance-name-elliptical-machine-field" class="appliance-info-radiobutton-label icon-elliptical-machine">Elliptical Machine</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-fitness-weight-machine-field" name="applianceName" value="Fitness Weight Machine" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-fitness-weight-machine" for="scheduler-appliance-info-appliance-name-fitness-weight-machine-field" class="appliance-info-radiobutton-label icon-fitness-weight-machine">Fitness Weight Machine</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-freezer-field" name="applianceName" value="Freezer" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-freezer" for="scheduler-appliance-info-appliance-name-freezer-field" class="appliance-info-radiobutton-label icon-freezer">Freezer</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-furnace-field" name="applianceName" value="Furnace" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-furnace" for="scheduler-appliance-info-appliance-name-furnace-field" class="appliance-info-radiobutton-label icon-furnace">Furnace</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-garage-door-opener-field" name="applianceName" value="Garage Door Opener" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-garage-door-opener" for="scheduler-appliance-info-appliance-name-garage-door-opener-field" class="appliance-info-radiobutton-label icon-garage-door-opener">Garage Door Opener</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-garbage-disposal-field" name="applianceName" value="Garbage Disposal" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-garbage-disposal" for="scheduler-appliance-info-appliance-name-garbage-disposal-field" class="appliance-info-radiobutton-label icon-garbage-disposal">Garbage Disposal</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-grill-field" name="applianceName" value="Grill" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-grill" for="scheduler-appliance-info-appliance-name-grill-field" class="appliance-info-radiobutton-label icon-grill">Grill</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-heat-pump-field" name="applianceName" value="Heat Pump" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-heat-pump" for="scheduler-appliance-info-appliance-name-heat-pump-field" class="appliance-info-radiobutton-label icon-heat-pump">Heat Pump</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-ice-maker-freestanding-field" name="applianceName" value="Ice Maker Freestanding" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-ice-maker-freestanding" for="scheduler-appliance-info-appliance-name-ice-maker-freestanding-field" class="appliance-info-radiobutton-label icon-ice-maker-freestanding">Ice Maker Freestanding</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-double-oven-field" name="applianceName" value="Double Oven" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-double-oven" for="scheduler-appliance-info-appliance-name-double-oven-field" class="appliance-info-radiobutton-label icon-double-oven">Double Oven</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-oven-field" name="applianceName" value="Oven" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-oven" for="scheduler-appliance-info-appliance-name-oven-field" class="appliance-info-radiobutton-label icon-oven">Oven</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-range-field" name="applianceName" value="Range" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-range" for="scheduler-appliance-info-appliance-name-range-field" class="appliance-info-radiobutton-label icon-range">Range</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-range-hood-field" name="applianceName" value="Range Hood" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-range-hood" for="scheduler-appliance-info-appliance-name-range-hood-field" class="appliance-info-radiobutton-label icon-range-hood">Range Hood</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-refrigerator-field" name="applianceName" value="Refrigerator" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-refrigerator" for="scheduler-appliance-info-appliance-name-refrigerator-field" class="appliance-info-radiobutton-label icon-refrigerator">Refrigerator</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-riding-mower-field" name="applianceName" value="Riding Mower" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-riding-mower" for="scheduler-appliance-info-appliance-name-riding-mower-field" class="appliance-info-radiobutton-label icon-riding-mower">Riding Mower</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-snowblower-field" name="applianceName" value="Snowblower" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-snowblower" for="scheduler-appliance-info-appliance-name-snowblower-field" class="appliance-info-radiobutton-label icon-snowblower">Snowblower</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-stacked-laundry-unit-field" name="applianceName" value="Stacked Laundry Unit" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-stacked-laundry-unit" for="scheduler-appliance-info-appliance-name-stacked-laundry-unit-field" class="appliance-info-radiobutton-label icon-stacked-laundry-unit">Stacked Laundry Unit</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-stationary-bike-field" name="applianceName" value="Stationary Bike" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-stationary-bike" for="scheduler-appliance-info-appliance-name-stationary-bike-field" class="appliance-info-radiobutton-label icon-stationary-bike">Stationary Bike</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-stepper-field" name="applianceName" value="Stepper" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-stepper" for="scheduler-appliance-info-appliance-name-stepper-field" class="appliance-info-radiobutton-label icon-stepper">Stepper</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-treadmill-field" name="applianceName" value="Treadmill" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-treadmill" for="scheduler-appliance-info-appliance-name-treadmill-field" class="appliance-info-radiobutton-label icon-treadmill">Treadmill</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-tv-field" name="applianceName" value="TV" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-tv" for="scheduler-appliance-info-appliance-name-tv-field" class="appliance-info-radiobutton-label icon-tv">TV</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-trash-compactor-field" name="applianceName" value="Trash Compactor" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-trash-compactor" for="scheduler-appliance-info-appliance-name-trash-compactor-field" class="appliance-info-radiobutton-label icon-trash-compactor">Trash Compactor</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-washer-field" name="applianceName" value="Washer" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-washer" for="scheduler-appliance-info-appliance-name-washer-field" class="appliance-info-radiobutton-label icon-washer">Washer</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-water-heater-field" name="applianceName" value="Water Heater" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-water-heater" for="scheduler-appliance-info-appliance-name-water-heater-field" class="appliance-info-radiobutton-label icon-water-heater">Water Heater</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-wide-deck-mower-field" name="applianceName" value="Wide Deck Mower" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-wide-deck-mower" for="scheduler-appliance-info-appliance-name-wide-deck-mower-field" class="appliance-info-radiobutton-label icon-wide-deck-mower">Wide Deck Mower</label>
+            </li>
+            <li class="appliance-info-option">
+              <input type="radio" id="scheduler-appliance-info-appliance-name-whole-house-dehumidifiers-and-humidifiers-field" name="applianceName" value="Whole House Dehumidifiers and Humidifiers" class="appliance-info-radiobutton-field "><label id="scheduler-appliance-info-appliance-name-whole-house-dehumidifiers-and-humidifiers" for="scheduler-appliance-info-appliance-name-whole-house-dehumidifiers-and-humidifiers-field" class="appliance-info-radiobutton-label icon-whole-house-dehumidifiers-and-humidifiers">Whole House Dehumidifiers and Humidifiers</label>
+            </li>
+        </ul>
+        </fieldset>
+
+</form></li>
+    <li class="wizard-step hidden">
+      
+    </li>
+    <li class="wizard-step hidden">
+      
+    </li>
+    <li class="wizard-step hidden">
+      
+    </li>
+    <li class="wizard-step hidden">
+      
+    </li>
+    <li class="wizard-step hidden">
+      
+    </li>
+    <li class="wizard-step hidden">
+      
+    </li>
+  </ol>
+</div><nav class="wizard-nav">
+  <a href="#back" class="button button-small button-secondary" data-step-increment="-1">
+    <svg class="icon" viewBox="0 0 23 23">
+      <path d="M16.069,20.53c-0.234,0-0.47-0.082-0.66-0.249l-9.14-8.03c-0.216-0.19-0.34-0.464-0.34-0.751s0.124-0.562,0.34-0.751 l9.14-8.03c0.416-0.363,1.048-0.323,1.412,0.091c0.364,0.415,0.323,1.047-0.091,1.412L8.445,11.5l8.285,7.279 c0.415,0.365,0.456,0.997,0.091,1.412C16.624,20.416,16.347,20.53,16.069,20.53z"></path>
+      Back
+    </svg>
+  </a><a href="#next" class="button button-small button-primary hidden" data-step-increment="1">
+    <span class="button-label">Next</span>
+    <svg class="icon" viewBox="0 0 23 23">
+      <path d="M6.931,20.53c-0.278,0-0.554-0.115-0.752-0.34c-0.364-0.415-0.323-1.047,0.091-1.412l8.285-7.279L6.27,4.221 C5.855,3.856,5.814,3.225,6.179,2.81C6.543,2.394,7.175,2.354,7.59,2.718l9.14,8.03c0.216,0.19,0.34,0.464,0.34,0.751 s-0.124,0.562-0.34,0.751l-9.14,8.03C7.4,20.448,7.165,20.53,6.931,20.53z"></path>
+    </svg>
+  </a>
+</nav><aside class="wizard-summary">
+  <h2 class="heading-e">Order Details</h2>
+  <p class="small">Select an appliance and your order summary will appear here.</p>
+  <dl class="summary-items hidden">
+  </dl>
+</aside><aside class="loading-notice hidden"><span class="loading-indicator"></span>Loading Content</aside><ol id="" class="progress-tracker">
+    <li class="progress-tracker-step active" data-step-goto="0">
+      <span class="step-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" class="icon-inline icon-inline-white">
+          <polyline fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="10" points="3.303,7.556 6.729,10.982 12.696,5.017"></polyline>
+        </svg>
+        <span>Appliance</span>
+      </span>
+    </li>
+    <li class="progress-tracker-step" data-step-goto="1">
+      <span class="step-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" class="icon-inline icon-inline-white">
+          <polyline fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="10" points="3.303,7.556 6.729,10.982 12.696,5.017"></polyline>
+        </svg>
+        <span>Type</span>
+      </span>
+    </li>
+    <li class="progress-tracker-step" data-step-goto="2">
+      <span class="step-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" class="icon-inline icon-inline-white">
+          <polyline fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="10" points="3.303,7.556 6.729,10.982 12.696,5.017"></polyline>
+        </svg>
+        <span>Brand</span>
+      </span>
+    </li>
+    <li class="progress-tracker-step" data-step-goto="3">
+      <span class="step-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" class="icon-inline icon-inline-white">
+          <polyline fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="10" points="3.303,7.556 6.729,10.982 12.696,5.017"></polyline>
+        </svg>
+        <span>Details</span>
+      </span>
+    </li>
+    <li class="progress-tracker-step" data-step-goto="4">
+      <span class="step-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" class="icon-inline icon-inline-white">
+          <polyline fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="10" points="3.303,7.556 6.729,10.982 12.696,5.017"></polyline>
+        </svg>
+        <span>Date</span>
+      </span>
+    </li>
+    <li class="progress-tracker-step" data-step-goto="5">
+      <span class="step-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" class="icon-inline icon-inline-white">
+          <polyline fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="10" points="3.303,7.556 6.729,10.982 12.696,5.017"></polyline>
+        </svg>
+        <span>Contact</span>
+      </span>
+    </li>
+    <li class="progress-tracker-step hidden" data-step-goto="6">
+      <span class="step-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" class="icon-inline icon-inline-white">
+          <polyline fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="10" points="3.303,7.556 6.729,10.982 12.696,5.017"></polyline>
+        </svg>
+        <span>Confirm</span>
+      </span>
+    </li>
+</ol></div>
+  </div>
