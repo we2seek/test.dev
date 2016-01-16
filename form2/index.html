@@ -6,74 +6,88 @@
 	<title>Title of the document</title>
 </head>
 <body>
-	<form method="post" id="multiform">
-		<div class="left">
-			<div class="head">
-				<ul id="progressbar">
-			        <li class="active">Вберите товар</li>
-			        <li>Кое-какие детали</li>
-			        <li>Бренд</li>
-			        <li>Адрес</li>
-			        <li>И напоследок</li>
-		    	</ul>
-			</div>
-            
-		    <fieldset>
-		        <h3>Выберите товар</h3>
-		        <input type="text">
-		        <input type="text">
-		        
-		    </fieldset>
-
-		    <fieldset>
-		        <h3>Кое-какие детали</h3>
-		        <input type="text">
-		        <input type="text">
-		    </fieldset>
-
-		    <fieldset>
-		        <h3>Бренд</h3>
-		        <input type="text">
-		    </fieldset>
-
-		    <fieldset>
-		        <h3>Адрес</h3>
-		        <textarea></textarea>
-		    </fieldset>
-
-		    <fieldset>
-		        <h3>И напоследок</h3>
-		        <input type="text">
-		    </fieldset>
-
-		    <div class="foot">
-		    	<div class="left-btn">
-                    <input type="button" class="prev action-button" value="Назад">
-                </div>
-		    	<div class="center-btn">&nbsp;</div>
-		    	<div class="right-btn">
-                    <input type="button" class="next action-button" value="Далее">
-                </div>
-		    			        
-		    </div>
-		</div>
-
-	    <div class="right">
-	        <h3>Step 1</h2>
-	        <dl>
-	            <dt>Task 1</dt>
-	            <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-	            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-	            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-	            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-	            </dd>
-	            
-	        </dl>
-	    </div>
-	</form>
-
-	<script src="js/jquery-2.1.4.min.js"></script>
-	<script src="js/111script.js"></script>
+    <form method="post" id="mform">
+        <div class="left">
+            <div class="top">
+                <ul id="progressbar">
+                    <li class="active">Выберите товар</li>
+                    <li>Кое-каие детали</li>
+                    <li>Бренд</li>
+                    <li>Адрес</li>
+                    <li>И напоследок</li>
+                </ul>
+            </div>
+            <div class="content">
+                <fieldset>
+                    <p>Step 1</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci nam iure maiores est ex quia commodi a aliquam culpa voluptatem laborum vero, architecto obcaecati rerum nobis enim, explicabo incidunt eum!</p>
+                    <input type="text">
+                </fieldset>
+                <fieldset>
+                    <p>Step 2</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci nam iure maiores est ex quia commodi a aliquam culpa voluptatem laborum vero, architecto obcaecati rerum nobis enim, explicabo incidunt eum!</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci nam iure maiores est ex quia commodi a aliquam culpa voluptatem laborum vero, architecto obcaecati rerum nobis enim, explicabo incidunt eum!</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci nam iure maiores est ex quia commodi a aliquam culpa voluptatem laborum vero, architecto obcaecati rerum nobis enim, explicabo incidunt eum!</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci nam iure maiores est ex quia commodi a aliquam culpa voluptatem laborum vero, architecto obcaecati rerum nobis enim, explicabo incidunt eum!</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci nam iure maiores est ex quia commodi a aliquam culpa voluptatem laborum vero, architecto obcaecati rerum nobis enim, explicabo incidunt eum!</p>
+                    <input type="text">
+                </fieldset>
+                <fieldset>
+                    <p>Step 3</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci nam iure maiores est ex quia commodi a aliquam culpa voluptatem laborum vero, architecto obcaecati rerum nobis enim, explicabo incidunt eum!</p>
+                    <input type="text">
+                </fieldset>
+                <fieldset>
+                    <p>Step 4</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci nam iure maiores est ex quia commodi a aliquam culpa voluptatem laborum vero, architecto obcaecati rerum nobis enim, explicabo incidunt eum!</p>
+                    <input type="text">
+                </fieldset>
+                <fieldset>
+                    <p>Step 5</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci nam iure maiores est ex quia commodi a aliquam culpa voluptatem laborum vero, architecto obcaecati rerum nobis enim, explicabo incidunt eum!</p>
+                    <input type="text">
+                </fieldset>
+            </div>
+            <div class="bottom">
+               <div class="left-button">
+                  <input class="prev" type="button" value="Previous">
+               </div>
+               <div class="right-button">
+                   <input class="next" type="button" value="Next">
+                   <input type="submit" value="Submit">
+               </div>
+            </div>
+        </div>
+        
+        <div class="right">
+        <dl>
+            <dd>Помощь в ремонте Вашей техники становится ближе с каждым шагом.</dd>
+        </dl>
+        <dl>
+            <dt>Step 1</dt>
+            <dd>Lorem ipsum dolor sit amet</dd>
+        </dl>
+        <dl>
+            <dt>Step 2</dt>
+            <dd>Lorem ipsum dolor sit amet</dd>
+        </dl>
+        <dl>
+            <dt>Step 3</dt>
+            <dd>Lorem ipsum dolor sit amet</dd>
+        </dl>
+        <dl>
+            <dt>Step 4</dt>
+            <dd>Lorem ipsum dolor sit amet</dd>
+        </dl>
+        <dl>
+            <dt>Step 5</dt>
+            <dd>Lorem ipsum dolor sit amet</dd>
+        </dl>
+        </div>
+    </form>
+    
+    
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

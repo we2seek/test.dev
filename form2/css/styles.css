@@ -1,63 +1,180 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow&subset=latin,cyrillic,cyrillic-ext,latin-ext');
+/* Color palette */
+/*
+#558C89
+#74AFAD
+#D9853B
+#ECECEA
+
+#E44424
+#67BCDB
+#A2AB58
+
+#404040
+#6DBDD6
+#B71427
+#FFE658
+
+#005a9d - Mayster corporate color
+*/
+
 * {
-	margin: ;
-	padding: 0;
+    margin: 0;
+    padding: 0;
+    font-family: /*'PT Sans Narrow'*/, sans-serif;
+    font-size: 1em;
+    box-sizing: border-box;
+    border: 0;
 }
 
-#multiform {
-	width: 600px;
-	height: 500px;
-	background-color: silver;
-	margin: 0px auto;
-/*    position: relative;*/
+p {
+    padding: 0 0 15px 0;
 }
 
-#multiform div.left{
-	background-color: orangered;
-	float: left;
-	width: 70%;
-    height: 500px;
+form#mform {
+    border: 1px solid #005a9d;
+    width: 600px;
+    height: 400px;
+    margin: 0 auto;
 }
 
-#multiform div.right{
-	background-color: green;
-	float: right;
-	width: 30%;
+/* Left Panel */
+#mform div.left {
+/*    background: #558C89;*/
+    border-right: 1px solid #005a9d;
+    float: left;
+    width: 70%;
     height: 100%;
-}
-
-/* Buttons */
-div.foot {
     position: relative;
-    background-color: blueviolet;
 }
 
-div.foot > div {
-/*	float: left;*/
-/*    position: relative;*/
+/* Progressbar */
+#mform div.left > div.top {
+    width: 100%;
+    margin: 15px auto;
+    padding: 0px 15px;
 }
 
-div.foot .left-btn {
-    width: 32%;
-    background-color: yellow;
-    position:absolute;
+#progressbar li {
+    list-style-type: none;
+    float: left;
+    width: 20%;
+    height: 50px;
+    text-align: center;
+    margin-bottom: 15px;
+    display: inline-block;
+    box-sizing: border-box;
+    position: relative;
+}
+
+#progressbar li:after {
+    /* insert whitespace */
+/*    margin-top: 15px;*/
+    content: '\00a0';
+	display: block;
+    position: absolute;
+    top: 40px;
+    height: 10px;
+    width: 100%;
+	background: white;
+    /* Because of border-collapse: collapse; didn't work */
+    border-right: 1px solid #005a9d;
+    border-top: 1px solid #005a9d;
+    border-bottom: 1px solid #005a9d;
+    box-sizing: border-box; 
+}
+
+#progressbar li:first-child:after {
+    /* Because of border-collapse: collapse; didn't work */
+    border-left: 1px solid #005a9d;
+}
+
+#progressbar .active:after {
+    background: #005a9d;
+}
+
+#progressbar .pass:after {
+    background: #0992fb;
+}
+
+#mform div.left > div.content {
+/*    background: #ECECEA;*/
+/*    height: 80%;*/
+    width: 100%;
+    /* Scrollbar will appear */
+    overflow: auto;
+    height: 70%;
+    padding: 15px;
+}
+
+#mform div.left > div.content > fieldset {
+/*    overflow: auto;*/
+}
+
+#mform div.left > div.bottom {
+/*    background: #67BCDB;*/
+    border-top: 1px solid #005a9d;
+    width: 100%;
+/*    height: 10%;*/
+    position: absolute;
     bottom: 0;
     left: 0;
 }
 
-div.foot .center-btn {
-    width: 36%;
-    background-color: springgreen;
+/* Buttons alignment */
+div.left-button {
+    float: left;
+/*    margin: 5px;*/
 }
 
-div.foot .right-btn {
-    width: 32%;
-    background-color: yellow;
-    text-align: right;
-    position: absolute;
-    bottom: 0;
-    right: 0;
+div.right-button {
+    float: right;
+/*    margin: 5px;*/
 }
 
-fieldset:not(:first-of-type) {
+.left-button > input, .right-button > input {
+    min-width: 100px;
+}
+
+#mform input, #mform textarea {
+	border: 1px solid #005a9d;
+	width: 100%;
+	color: #2c3e50;
+    padding: 5px 15px;
+}
+
+#mform input[type=submit]{
+    display: none;
+}
+
+/* Hide all except first fieldset */
+#mform fieldset:not(:first-of-type) {
 	display: none;
 }
+
+/* Right Panel */
+#mform div.right {
+/*    background: #D9853B;*/
+    float: left;
+    width: 30%;
+    overflow: auto;
+    height: 100%;
+}
+
+dl {
+    background: #67BCDB;
+    padding: 5px;
+}
+
+dt {
+    
+}
+
+/* Hide all dls except the first one */
+#mform dl:not(:first-of-type) {
+	display: none;
+}
+
+
+
+
