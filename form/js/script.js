@@ -12,9 +12,9 @@ $(".next").click(function(){
 
 	// Show the next fieldset
 	next_fs.show();
-	current_fs.hide();
+	//current_fs.hide();
 	// Hide the current fieldset with style
-	/*current_fs.animate({opacity: 0}, {
+	current_fs.animate({opacity: 0}, {
 		step: function (now, mx) {
 			// as the opacity of current_fs reduces to 0 - stored in "now"
 			// 1. scale current_fs down to 80%
@@ -26,11 +26,12 @@ $(".next").click(function(){
 			current_fs.css({'transform': 'scale(' + scale + ')'});
 			next_fs.css({'left': left, 'opacity': opacity});
 		},
-		duration: 400,
+		duration: 800,
 		complete: function(){
 			current_fs.hide();
-		}
-	});*/
+		},
+		
+	});
 });
 
 $('.previous').click(function(){
