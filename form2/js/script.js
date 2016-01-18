@@ -2,10 +2,18 @@ var current_fs, next_fs, prev_fs;
 var progressbar = $('#progressbar li');
 var submit = $('#mform input[type=submit]');
 var dl = $('#mform .right > dl');
+var contentDiv = $('#mform div.content');
 var step = 0;
 var max_step = 4;
+var left, opacity, scale;
+var animDuration = 'slow';
+jQuery.easing.def = 'easeInOutBack';
 
-$('.next').click(function () {
+$(document).ready(function () {
+    $('.prev').prop('disabled', true);
+});
+
+function showNext() {
     current_fs = $('#mform fieldset').eq(step);
     if (step < max_step) {
         step++;
@@ -24,33 +32,41 @@ $('.next').click(function () {
     // Right panel with <dl>
     dl.eq(step).show();
     
-	// current_fs.hide();
-	next_fs.show();
+/*
+    contentDiv.css('overflow', 'hidden');
+    current_fs.animate({'left': '350'}, {
+        duration:'slow',
+        // easing: 'easeOutElastic',
+        complete: function () {
+            contentDiv.css('overflow', 'auto');
+            current_fs.css('left', '0');
+            current_fs.hide();
+            next_fs.show();
+        }
+    });
+    */
+    
+    next_fs.show();
     current_fs.animate({opacity: 0}, {
-        step: function (now, mx) {
-            // as the opacity of current_fs reduces to 0 - stored in "now"
-            // 1. scale current_fs down to 80%
+        step: function(now, mx) {
             scale = 1 - (1 - now) * 0.2;
-            // 2. bring next_fs from the right (50%)
             left = (now * 50) + '%';
-            // 3. increase opacity of next_fs to 1 as it moves in
             opacity = 1 - now;
             current_fs.css({'transform': 'scale(' + scale + ')'});
             next_fs.css({'left': left, 'opacity': opacity});
         },
-        duration: 800,
-        complete: function(){
+        duration: animDuration,
+        complete: function() {
+            current_fs.css('left', '0');
             current_fs.hide();
-        },
-        easing: 'easeInOutBack'
-        
+        }        
     });
-
-});
-
-$('.prev').click(function () {
     
-	current_fs = $('#mform fieldset').eq(step);
+    
+}
+
+function showPrevious () {
+    current_fs = $('#mform fieldset').eq(step);
 	if (step > 0) {
         dl.eq(step).hide();
         
@@ -67,8 +83,71 @@ $('.prev').click(function () {
         submit.hide();
     }
     
+    /*
+    current_fs.hide({
+        duration: 800,
+        easing: 'easeInCirc',
+        complete: function () {
+            current_fs.hide();
+            prev_fs.show();
+        }
+    });
+    */
     
+    /*
+    contentDiv.css('overflow', 'hidden');
+    current_fs.animate({right: 350}, {
+        duration:'fast',
+        // easing: 'easeOutBack',
+        complete: function () {
+            contentDiv.css('overflow', 'auto');
+            current_fs.css('right', '0');
+            current_fs.hide();
+            prev_fs.show();
+        }
+    });
+	*/
     
-    current_fs.hide();
-	prev_fs.show();
+    prev_fs.show();
+    current_fs.animate({opacity: 0}, {
+        step: function(now, mx) {
+            scale = 0.8 + (1 - now) * 0.2;
+            left = ((1 - now) * 50) + '%';
+            opacity = 1 - now;
+            current_fs.css({'left': left});
+            prev_fs.css({'transform': 'scale(' + scale + ')', 'opacity': opacity});
+        },
+        duration: animDuration,
+        complete: function() {
+            current_fs.css('left', '0');
+            current_fs.hide();
+        }        
+    });
+}
+
+$('.next').click(function () {
+    /* jQuery Validation */
+    var form = $('#mform');
+    form.validate({
+        rules: {
+            inputStep1: {required: true, minlength: 6},
+        },
+    });
+    
+    if (form.valid() == true) {
+        showNext();
+    }
+    
+    if (step > 0) {
+        $('.prev').prop('disabled', false);
+        console.log('step: ' + step);
+    }
+});
+
+$('.prev').click(function () {
+    showPrevious();
+    
+    if (step === 0) {
+        $(this).prop('disabled', true);
+    }
 });

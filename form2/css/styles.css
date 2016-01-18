@@ -104,7 +104,8 @@ form#mform {
     /* Scrollbar will appear */
     overflow: auto;
     height: 70%;
-    padding: 15px;
+/*    padding: 15px;*/
+    position: relative;
 }
 
 #mform div.left > div.content > fieldset {
@@ -152,6 +153,11 @@ div.right-button {
 	display: none;
 }
 
+#mform fieldset {
+    position: absolute;
+    margin: 20px;
+}
+
 /* Right Panel */
 #mform div.right {
 /*    background: #D9853B;*/
@@ -173,6 +179,13 @@ dt {
 /* Hide all dls except the first one */
 #mform dl:not(:first-of-type) {
 	display: none;
+}
+
+label.error {
+    font-size: small;
+    color: orangered;
+    padding: 5px 0;
+    display: block;
 }
 
 
