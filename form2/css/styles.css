@@ -33,8 +33,8 @@ p {
 
 form#mform {
     border: 1px solid #005a9d;
-    width: 600px;
-    height: 400px;
+    width: 800px;
+    height: 500px;
     margin: 0 auto;
 }
 
@@ -135,6 +135,7 @@ div.right-button {
 
 .left-button > input, .right-button > input {
     min-width: 100px;
+    border: 0;
 }
 
 #mform input, #mform textarea {

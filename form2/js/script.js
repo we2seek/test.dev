@@ -9,8 +9,12 @@ var left, opacity, scale;
 var animDuration = 'slow';
 jQuery.easing.def = 'easeInOutBack';
 
+
+
 $(document).ready(function () {
     $('.prev').prop('disabled', true);
+    
+    $('input[type="submit"]').onclick();
 });
 
 function showNext() {
@@ -19,11 +23,6 @@ function showNext() {
         step++;
     }
     next_fs = $('#mform fieldset').eq(step);
-    
-    if (step === max_step) {
-        $(this).hide();
-        submit.show();
-    }
     
     // Progressbar
     progressbar.eq(step - 1).addClass('pass');
@@ -129,6 +128,10 @@ $('.next').click(function () {
     /* jQuery Validation */
     var form = $('#mform');
     form.validate({
+        submitHandler: function (e) {
+            alert('Submit was ingored!');
+            e.preventDefault();
+        },
         rules: {
             inputStep1: {required: true, minlength: 6},
         },
@@ -141,6 +144,11 @@ $('.next').click(function () {
     if (step > 0) {
         $('.prev').prop('disabled', false);
         console.log('step: ' + step);
+    }
+    
+    if (step === max_step) {
+        $(this).hide();
+        submit.show();
     }
 });
 
