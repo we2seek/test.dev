@@ -1,7 +1,4 @@
-/* try 
-http://www.codeproject.com/Tips/855277/JQuery-Image-Slider-Tutorial-for-Beginners
-
-*/
+/* TODO: try use http://www.codeproject.com/Tips/855277/JQuery-Image-Slider-Tutorial-for-Beginners */
 var current_fs, next_fs, prev_fs;
 var progressbar = $('#progressbar li');
 var submit = $('#mform input[type=submit]');
@@ -17,9 +14,47 @@ jQuery.easing.def = 'easeInOutBack';
 
 $(document).ready(function () {
     $('.prev').prop('disabled', true);
-    
-    $('input[type="submit"]').onclick();
+    $('.next').click(nextStep);
+    $('.prev').click(previousStep);
+    $('#mform input[type="radio"]').click(nextStep);
 });
+
+function nextStep() {
+    var form = $('#mform');
+    form.validate({
+        submitHandler: function (e) {
+            alert('Submit was ingored!');
+            e.preventDefault();
+        },
+        rules: {
+            inputStep3: {
+                required: true,
+                minlength: 6
+            },
+        },
+    });
+
+    if (form.valid() == true) {
+        showNext();
+    }
+
+    if (step > 0) {
+        $('.prev').prop('disabled', false);
+    }
+
+    if (step === max_step) {
+        $(this).hide();
+        submit.show();
+    }
+}
+
+function previousStep() {
+    showPrevious();
+
+    if (step === 0) {
+        $(this).prop('disabled', true);
+    }
+}
 
 function showNext() {
     current_fs = $('#mform fieldset').eq(step);
@@ -27,52 +62,59 @@ function showNext() {
         step++;
     }
     next_fs = $('#mform fieldset').eq(step);
-    
+
     // Progressbar
     progressbar.eq(step - 1).addClass('pass');
     progressbar.eq(step).addClass('active');
-    
+
     // Right panel with <dl>
     dl.eq(step).show();
-    
-/*
-    contentDiv.css('overflow', 'hidden');
-    current_fs.animate({'left': '350'}, {
-        duration:'slow',
-        // easing: 'easeOutElastic',
-        complete: function () {
-            contentDiv.css('overflow', 'auto');
-            current_fs.css('left', '0');
-            current_fs.hide();
-            next_fs.show();
-        }
-    });
-    */
-    
+
+    /*
+        contentDiv.css('overflow', 'hidden');
+        current_fs.animate({'left': '350'}, {
+            duration:'slow',
+            // easing: 'easeOutElastic',
+            complete: function () {
+                contentDiv.css('overflow', 'auto');
+                current_fs.css('left', '0');
+                current_fs.hide();
+                next_fs.show();
+            }
+        });
+        */
+
     next_fs.show();
-    current_fs.animate({opacity: 0}, {
-        step: function(now, mx) {
+    current_fs.animate({
+        opacity: 0
+    }, {
+        step: function (now, mx) {
             scale = 1 - (1 - now) * 0.2;
             left = (now * 50) + '%';
             opacity = 1 - now;
-            current_fs.css({'transform': 'scale(' + scale + ')'});
-            next_fs.css({'left': left, 'opacity': opacity});
+            current_fs.css({
+                'transform': 'scale(' + scale + ')'
+            });
+            next_fs.css({
+                'left': left,
+                'opacity': opacity
+            });
         },
         duration: animDuration,
-        complete: function() {
+        complete: function () {
             current_fs.css('left', '0');
             current_fs.hide();
-        }        
+        }
     });
-    
-    
+
+
 }
 
-function showPrevious () {
+function showPrevious() {
     current_fs = $('#mform fieldset').eq(step);
-	if (step > 0) {
+    if (step > 0) {
         dl.eq(step).hide();
-        
+
         progressbar.eq(step).removeClass('active');
         progressbar.eq(step).removeClass('pass');
         step--;
@@ -80,12 +122,12 @@ function showPrevious () {
         progressbar.eq(step).addClass('active');
     }
     prev_fs = $('#mform fieldset').eq(step);
-    
+
     if (step < max_step) {
         $('.next').show();
         submit.hide();
     }
-    
+
     /*
     current_fs.hide({
         duration: 800,
@@ -96,7 +138,7 @@ function showPrevious () {
         }
     });
     */
-    
+
     /*
     contentDiv.css('overflow', 'hidden');
     current_fs.animate({right: 350}, {
@@ -110,56 +152,27 @@ function showPrevious () {
         }
     });
 	*/
-    
+
     prev_fs.show();
-    current_fs.animate({opacity: 0}, {
-        step: function(now, mx) {
+    current_fs.animate({
+        opacity: 0
+    }, {
+        step: function (now, mx) {
             scale = 0.8 + (1 - now) * 0.2;
             left = ((1 - now) * 50) + '%';
             opacity = 1 - now;
-            current_fs.css({'left': left});
-            prev_fs.css({'transform': 'scale(' + scale + ')', 'opacity': opacity});
+            current_fs.css({
+                'left': left
+            });
+            prev_fs.css({
+                'transform': 'scale(' + scale + ')',
+                'opacity': opacity
+            });
         },
         duration: animDuration,
-        complete: function() {
+        complete: function () {
             current_fs.css('left', '0');
             current_fs.hide();
-        }        
+        }
     });
 }
-
-$('.next').click(function () {
-    /* jQuery Validation */
-    var form = $('#mform');
-    form.validate({
-        submitHandler: function (e) {
-            alert('Submit was ingored!');
-            e.preventDefault();
-        },
-        rules: {
-            inputStep1: {required: true, minlength: 6},
-        },
-    });
-    
-    if (form.valid() == true) {
-        showNext();
-    }
-    
-    if (step > 0) {
-        $('.prev').prop('disabled', false);
-        console.log('step: ' + step);
-    }
-    
-    if (step === max_step) {
-        $(this).hide();
-        submit.show();
-    }
-});
-
-$('.prev').click(function () {
-    showPrevious();
-    
-    if (step === 0) {
-        $(this).prop('disabled', true);
-    }
-});

@@ -145,6 +145,57 @@ div.right-button {
     padding: 5px 15px;
 }
 
+#mform input[type=radio] {
+    display: none;
+}
+
+#mform input[type=radio] + label {
+    display: inline-block;
+/*    margin-left: -5px;*/
+    width: 128px;
+    height: 118px;
+    padding: 25px;
+    margin: 5px;
+    cursor: pointer;
+    color: lightsteelblue;
+    border: 2px solid white;
+}
+
+#mform input[type=radio] + label:hover > * {
+    color: #005a9d;
+    color: #005a9d;
+    fill: #005a9d;
+}
+
+#mform input[type=radio]:checked + label {
+/*    background-color: silver;*/
+    border: 2px solid #005a9d;
+    color: lightsteelblue;
+}
+
+#mform input[type=radio] + label > svg {
+    /*height: 4em;
+    max-height: 4em;*/
+    display: block;
+    margin: 0px auto;
+    fill: LightSteelBlue;
+    color: LightSteelBlue;
+}
+
+#mform input[type=radio]:checked + label {
+    color: #005a9d;
+}
+#mform input[type=radio]:checked + label > svg {
+    fill: #005a9d;
+    color: #005a9d;
+}
+
+#mform input[type=radio] + label > svg + span {
+    margin: 5px auto;
+    display: block;
+/*    width: 100%;*/
+}
+
 #mform input[type=submit]{
     display: none;
 }
@@ -156,7 +207,9 @@ div.right-button {
 
 #mform fieldset {
     position: absolute;
-    margin: 20px;
+    padding: 20px;
+    width: 100%;
+    text-align: center
 }
 
 /* Right Panel */
@@ -169,7 +222,7 @@ div.right-button {
 }
 
 dl {
-    background: #67BCDB;
+    background-color: lightsteelblue;
     padding: 5px;
 }
 
