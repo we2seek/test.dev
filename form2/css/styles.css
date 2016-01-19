@@ -1,5 +1,7 @@
 /*@import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow&subset=latin,cyrillic,cyrillic-ext,latin-ext');*/
 /* Color palette */
+/* Usage: font-family: 'PT Sans Narrow', sans-serif; */
+
 /*
 #558C89
 #74AFAD
@@ -21,21 +23,22 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: /*'PT Sans Narrow'*/, sans-serif;
-    font-size: 1em;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 10pt;
     box-sizing: border-box;
     border: 0;
 }
 
 p {
     padding: 0 0 15px 0;
+    text-align: left;
 }
 
 form#mform {
     border: 1px solid #005a9d;
     width: 800px;
     height: 500px;
-    margin: 0 auto;
+    margin: 50px auto;
 }
 
 /* Left Panel */
@@ -43,7 +46,7 @@ form#mform {
 /*    background: #558C89;*/
     border-right: 1px solid #005a9d;
     float: left;
-    width: 70%;
+    width: 560px;
     height: 100%;
     position: relative;
 }
@@ -94,7 +97,7 @@ form#mform {
 }
 
 #progressbar .pass:after {
-    background: #0992fb;
+    background-color: lightsteelblue;
 }
 
 #mform div.left > div.content {
@@ -122,43 +125,79 @@ form#mform {
     left: 0;
 }
 
-/* Buttons alignment */
-div.left-button {
+div.bottom-left {
     float: left;
 /*    margin: 5px;*/
 }
 
-div.right-button {
+div.bottom-right {
     float: right;
 /*    margin: 5px;*/
 }
 
-.left-button > input, .right-button > input {
-    min-width: 100px;
-    border: 0;
-}
-
-#mform input, #mform textarea {
+#mform input[type="text"], #mform textarea {
 	border: 1px solid #005a9d;
 	width: 100%;
-	color: #2c3e50;
+	color: black;
     padding: 5px 15px;
 }
 
+input.mbutton {
+    background-color: #005a9d;
+    color: white;
+    border: 1px solid transparent;
+    min-width: 100px;
+    padding: 5px 15px;
+    outline: none;
+}
+
+/* Remove border around button text in firefox */
+input.mbutton::-moz-focus-inner{
+    border: 0;
+}
+
+input.mbutton:disabled {
+    background-color: lightsteelblue;
+}
+
+input.mbutton:disabled:hover {
+    background-color: lightsteelblue;
+    cursor: default;
+}
+
+input.mbutton:hover {
+    background-color: #003660;
+    cursor: pointer;
+    color: white;
+}
+
+.bottom-left input {
+    border-right: 1px solid #005a9d;
+}
+
+.bottom-right input {
+    border-left: 1px solid #005a9d;
+}
+
+/* RadioButtons */
 #mform input[type=radio] {
     display: none;
 }
 
-#mform input[type=radio] + label {
+#mform input[type="radio"] + label {
     display: inline-block;
 /*    margin-left: -5px;*/
     width: 128px;
-    height: 118px;
-    padding: 25px;
+    height: 128px;
+    padding-top: 25px;
     margin: 5px;
     cursor: pointer;
     color: lightsteelblue;
-    border: 2px solid white;
+    border: 2px solid transparent;
+}
+
+#mform input[type="radio"] + label:hover {
+    border: 2px solid #005a9d;
 }
 
 #mform input[type=radio] + label:hover > * {
@@ -174,8 +213,8 @@ div.right-button {
 }
 
 #mform input[type=radio] + label > svg {
-    /*height: 4em;
-    max-height: 4em;*/
+    height: 4em;
+    max-height: 4em;
     display: block;
     margin: 0px auto;
     fill: LightSteelBlue;
@@ -185,15 +224,16 @@ div.right-button {
 #mform input[type=radio]:checked + label {
     color: #005a9d;
 }
+
 #mform input[type=radio]:checked + label > svg {
     fill: #005a9d;
     color: #005a9d;
 }
 
 #mform input[type=radio] + label > svg + span {
-    margin: 5px auto;
-    display: block;
-/*    width: 100%;*/
+    margin: 0px auto;
+    display: inline-block;
+    width: auto;
 }
 
 #mform input[type=submit]{
@@ -216,18 +256,19 @@ div.right-button {
 #mform div.right {
 /*    background: #D9853B;*/
     float: left;
-    width: 30%;
+    width: 238px;
     overflow: auto;
     height: 100%;
 }
 
 dl {
-    background-color: lightsteelblue;
+    background-color: #005a9d;
+    color: white;
     padding: 5px;
 }
 
 dt {
-    
+    font-weight: bold;
 }
 
 /* Hide all dls except the first one */
@@ -240,6 +281,7 @@ label.error {
     color: orangered;
     padding: 5px 0;
     display: block;
+    text-align: left;
 }
 
 

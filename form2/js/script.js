@@ -7,10 +7,9 @@ var contentDiv = $('#mform div.content');
 var step = 0;
 var max_step = 4;
 var left, opacity, scale;
-var animDuration = 'slow';
-jQuery.easing.def = 'easeInOutBack';
-
-
+var animDuration = 'fast';
+//jQuery.easing.def = 'easeInOutBack';
+jQuery.easing.def = 'easeOutSine';
 
 $(document).ready(function () {
     $('.prev').prop('disabled', true);
@@ -70,20 +69,21 @@ function showNext() {
     // Right panel with <dl>
     dl.eq(step).show();
 
-    /*
-        contentDiv.css('overflow', 'hidden');
-        current_fs.animate({'left': '350'}, {
-            duration:'slow',
-            // easing: 'easeOutElastic',
-            complete: function () {
-                contentDiv.css('overflow', 'auto');
-                current_fs.css('left', '0');
-                current_fs.hide();
-                next_fs.show();
-            }
-        });
-        */
+    contentDiv.css('overflow', 'hidden');
+    current_fs.animate({
+        'right': '350'
+    }, {
+        duration: animDuration,
+        // easing: 'easeOutElastic',
+        complete: function () {
+            contentDiv.css('overflow', 'auto');
+            current_fs.css('right', '0');
+            current_fs.hide();
+            next_fs.show();
+        }
+    });
 
+    /*
     next_fs.show();
     current_fs.animate({
         opacity: 0
@@ -106,8 +106,7 @@ function showNext() {
             current_fs.hide();
         }
     });
-
-
+    */
 }
 
 function showPrevious() {
@@ -139,20 +138,21 @@ function showPrevious() {
     });
     */
 
-    /*
     contentDiv.css('overflow', 'hidden');
-    current_fs.animate({right: 350}, {
-        duration:'fast',
+    current_fs.animate({
+        'left': '350px'
+    }, {
+        duration: animDuration,
         // easing: 'easeOutBack',
         complete: function () {
             contentDiv.css('overflow', 'auto');
-            current_fs.css('right', '0');
+            current_fs.css('left', '0');
             current_fs.hide();
             prev_fs.show();
         }
     });
-	*/
 
+    /*
     prev_fs.show();
     current_fs.animate({
         opacity: 0
@@ -175,4 +175,5 @@ function showPrevious() {
             current_fs.hide();
         }
     });
+    */
 }
