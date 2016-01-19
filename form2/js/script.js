@@ -1,3 +1,7 @@
+/* try 
+http://www.codeproject.com/Tips/855277/JQuery-Image-Slider-Tutorial-for-Beginners
+
+*/
 var current_fs, next_fs, prev_fs;
 var progressbar = $('#progressbar li');
 var submit = $('#mform input[type=submit]');
