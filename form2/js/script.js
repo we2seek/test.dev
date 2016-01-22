@@ -1,22 +1,91 @@
 /* TODO: try use http://www.codeproject.com/Tips/855277/JQuery-Image-Slider-Tutorial-for-Beginners */
 var current_fs, next_fs, prev_fs;
+var form = $('#mform');
+var fieldsets = $('#mform fieldset');
 var progressbar = $('#progressbar li');
-var submit = $('#mform input[type=submit]');
+var btnSubmit = $('#mform input[type=submit]');
+var btnPrev = $('#mform .prev');
+var btnNext = $('#mform .next');
 var dl = $('#mform .right > dl');
 var contentDiv = $('#mform div.content');
-var step = 0;
-var max_step = 4;
+var step = 0; //current step
+var max_step = fieldsets.length - 1;
 var left, opacity, scale;
 var animDuration = 'fast';
+
 //jQuery.easing.def = 'easeInOutBack';
 jQuery.easing.def = 'easeOutSine';
 
 $(document).ready(function () {
-    $('.prev').prop('disabled', true);
-    $('.next').click(nextStep);
-    $('.prev').click(previousStep);
-    $('#mform input[type="radio"]').click(nextStep);
+    btnPrev.prop('disabled', true);
+
+    btnNext.click(function () {
+        showStep(step + 1);
+    });
+
+    btnPrev.click(function () {
+        showStep(step - 1);
+    });
+
+    form.validate({
+        submitHandler: function (e) {
+            alert('Submit was ingored!');
+            e.preventDefault();
+        },
+        rules: {
+            inputStep3: {
+                required: true,
+                minlength: 6
+            },
+        },
+    });
+
 });
+
+
+
+function showStep(nextStep) {
+
+    // Prevent form validation on PREV button pressed
+    if (form.valid() == false && (nextStep > step)) {
+        return false;
+    }
+
+    /* 
+    // Circle loop thought steps
+    if (nextStep < 0) {
+        nextStep = max_step;
+    }
+
+    // Circle loop thought steps
+    if (nextStep > max_step) {
+        nextStep = 0;
+    }
+    */
+
+    current_fs = fieldsets.eq(step);
+    next_fs = fieldsets.eq(nextStep);
+
+    current_fs.hide();
+    next_fs.show();
+        
+    // Show/hide buttons
+    if (nextStep == 0) {
+        btnPrev.prop('disabled', true);
+    } else {
+        btnPrev.prop('disabled', false);
+    }
+    
+    if (nextStep == max_step) {
+        btnNext.hide();
+        btnSubmit.show();
+    } else if (btnNext.is(':visible') === false) {
+        btnNext.show();
+        btnSubmit.hide();
+    }
+    
+    step = nextStep;
+}
 
 function nextStep() {
     var form = $('#mform');
