@@ -1,23 +1,8 @@
-/*@import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow&subset=latin,cyrillic,cyrillic-ext,latin-ext');*/
-/* Color palette */
-/* Usage: font-family: 'PT Sans Narrow', sans-serif; */
-
 /*
-#558C89
-#74AFAD
-#D9853B
-#ECECEA
-
-#E44424
-#67BCDB
-#A2AB58
-
-#404040
-#6DBDD6
-#B71427
-#FFE658
-
-#005a9d - Mayster corporate color
+Colors used:
+#005a9d         - Mayster corporate color
+#003660         - Darker color
+lightsteelblue  - Disabled color
 */
 
 * {
