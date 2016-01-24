@@ -7,15 +7,12 @@ var btnSubmit = $('#mform input[type=submit]');
 var btnPrev = $('#mform .prev');
 var btnNext = $('#mform .next');
 var dl = $('#mform .right > dl');
-var contentDiv = $('#mform div.content');
-var step = 0; //current step
-var max_step = fieldsets.length - 1;
-var left, opacity, scale;
-var animDuration = 'fast';
-var isAdditionalStepShown = false;
+var radioProd = $('input[name="product"]');
+var radioProdType = $('input[name="productType"]');
 
-//jQuery.easing.def = 'easeInOutBack';
-jQuery.easing.def = 'easeOutSine';
+var step = 0; //current step
+var stepStack = [];
+var max_step = fieldsets.length - 1;
 
 $(document).ready(function () {
     btnPrev.prop('disabled', true);
@@ -25,34 +22,49 @@ $(document).ready(function () {
     });
 
     btnPrev.click(function () {
-        showStep(step - 1);
+        showStep(stepStack.pop());
     });
 
     form.validate({
-        submitHandler: function (e) {
-            alert('Submit was ingored!');
-            e.preventDefault();
-        },
         rules: {
             inputStep3: {
                 required: true,
                 minlength: 6
             },
+            productType: {
+                required: function() {
+                    return $('input[name="productType"]:checked').val() == 'true';
+                },
+            },
+        },
+        errorPlacement: function(error, element) {
+            if ( element.is(":radio") ) {
+                error.appendTo( element.parents('.container') );
+            } else { // This is the default behavior 
+                error.insertAfter( element );
+            }
+        },
+        messages: {
+            productType: {
+                required: "Make the choice, mother fucker!",
+            }
         },
     });
     
-    $('input[name="product"]').click(function(){
+    radioProd.click(function(){
         showStep(step + 1);
+        // Deselect productType checked if there
+        radioProdType.filter(':checked').prop('checked', false);
     });
     
-    $('input[name="productType"]').click(function(){
+    radioProdType.click(function(){
         // Escape step with prodType selection
         if (step == 0){
             showStep(step + 2);
-            isAdditionalStepShown = false;
+            // Deselect product checked if there
+            radioProd.filter(':checked').prop('checked', false);
         } else {
             showStep(step + 1);
-            isAdditionalStepShown = true;
         }
     });
 
@@ -63,21 +75,10 @@ $(document).ready(function () {
 function showStep(nextStep) {
 
     // Prevent form validation on PREV button pressed
-    if (form.valid() == false && (nextStep > step)) {
+    if (form.valid() === false && (nextStep > step)) {
+        console.log('not valid form');
         return false;
     }
-
-    /* 
-    // Circle loop thought steps
-    if (nextStep < 0) {
-        nextStep = max_step;
-    }
-
-    // Circle loop thought steps
-    if (nextStep > max_step) {
-        nextStep = 0;
-    }
-    */
 
     current_fs = fieldsets.eq(step);
     next_fs = fieldsets.eq(nextStep);
@@ -86,13 +87,13 @@ function showStep(nextStep) {
     next_fs.show();
         
     // Show/hide buttons
-    if (nextStep == 0) {
+    if (nextStep === 0) {
         btnPrev.prop('disabled', true);
     } else {
         btnPrev.prop('disabled', false);
     }
     
-    if (nextStep == max_step) {
+    if (nextStep === max_step) {
         btnNext.hide();
         btnSubmit.show();
     } else if (btnNext.is(':visible') === false) {
@@ -101,173 +102,30 @@ function showStep(nextStep) {
     }
     
     // Progressbar
-    progressbar.eq(step).removeClass('active');
-    if (nextStep > step) {
-        progressbar.eq(step).addClass('pass');
-    }
-        
-    progressbar.eq(nextStep).removeClass('pass').addClass('active');
-//    alert("Step: " + step + "\nNext: " + nextStep);
+    var i = 0;
     
-    step = nextStep;
-}
-
-function nextStep() {
-    var form = $('#mform');
-    form.validate({
-        submitHandler: function (e) {
-            alert('Submit was ingored!');
-            e.preventDefault();
-        },
-        rules: {
-            inputStep3: {
-                required: true,
-                minlength: 6
-            },
-        },
-    });
-
-    if (form.valid() == true) {
-        showNext();
+    for (i = 0; i < nextStep; i++) {
+        progressbar.eq(i).addClass('pass');
     }
-
-    if (step > 0) {
-        $('.prev').prop('disabled', false);
+    
+    for (i = nextStep; i < max_step; i++) {
+        progressbar.eq(i).removeClass('pass');
     }
-
-    if (step === max_step) {
-        $(this).hide();
-        submit.show();
-    }
-}
-
-function previousStep() {
-    showPrevious();
-
-    if (step === 0) {
-        $(this).prop('disabled', true);
-    }
-}
-
-function showNext() {
-    current_fs = $('#mform fieldset').eq(step);
-    if (step < max_step) {
-        step++;
-    }
-    next_fs = $('#mform fieldset').eq(step);
-
-    // Progressbar
-    progressbar.eq(step - 1).addClass('pass');
-    progressbar.eq(step).addClass('active');
-
+    
+    progressbar.eq(step).removeClass('active');
+    progressbar.eq(nextStep).addClass('active');
+    
     // Right panel with <dl>
-    dl.eq(step).show();
-
-    contentDiv.css('overflow', 'hidden');
-    current_fs.animate({
-        'right': '350'
-    }, {
-        duration: animDuration,
-        // easing: 'easeOutElastic',
-        complete: function () {
-            contentDiv.css('overflow', 'auto');
-            current_fs.css('right', '0');
-            current_fs.hide();
-            next_fs.show();
-        }
-    });
-
-    /*
-    next_fs.show();
-    current_fs.animate({
-        opacity: 0
-    }, {
-        step: function (now, mx) {
-            scale = 1 - (1 - now) * 0.2;
-            left = (now * 50) + '%';
-            opacity = 1 - now;
-            current_fs.css({
-                'transform': 'scale(' + scale + ')'
-            });
-            next_fs.css({
-                'left': left,
-                'opacity': opacity
-            });
-        },
-        duration: animDuration,
-        complete: function () {
-            current_fs.css('left', '0');
-            current_fs.hide();
-        }
-    });
-    */
-}
-
-function showPrevious() {
-    current_fs = $('#mform fieldset').eq(step);
-    if (step > 0) {
+    if (nextStep > step) {
+        dl.eq(step + 1).show();
+    } else {
         dl.eq(step).hide();
-
-        progressbar.eq(step).removeClass('active');
-        progressbar.eq(step).removeClass('pass');
-        step--;
-        progressbar.eq(step).removeClass('pass');
-        progressbar.eq(step).addClass('active');
     }
-    prev_fs = $('#mform fieldset').eq(step);
-
-    if (step < max_step) {
-        $('.next').show();
-        submit.hide();
+    
+    // Do not remeber last step if we go back to prevent loop
+    // between steps
+    if (nextStep > step ) {
+        stepStack.push(step);
     }
-
-    /*
-    current_fs.hide({
-        duration: 800,
-        easing: 'easeInCirc',
-        complete: function () {
-            current_fs.hide();
-            prev_fs.show();
-        }
-    });
-    */
-
-    contentDiv.css('overflow', 'hidden');
-    current_fs.animate({
-        'left': '350px'
-    }, {
-        duration: animDuration,
-        // easing: 'easeOutBack',
-        complete: function () {
-            contentDiv.css('overflow', 'auto');
-            current_fs.css('left', '0');
-            current_fs.hide();
-            prev_fs.show();
-        }
-    });
-
-    /*
-    prev_fs.show();
-    current_fs.animate({
-        opacity: 0
-    }, {
-        step: function (now, mx) {
-            scale = 0.8 + (1 - now) * 0.2;
-            left = ((1 - now) * 50) + '%';
-            opacity = 1 - now;
-            current_fs.css({
-                'left': left
-            });
-            prev_fs.css({
-                'transform': 'scale(' + scale + ')',
-                'opacity': opacity
-            });
-        },
-        duration: animDuration,
-        complete: function () {
-            current_fs.css('left', '0');
-            current_fs.hide();
-        }
-    });
-    */
+    step = nextStep;
 }
