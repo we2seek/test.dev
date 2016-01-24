@@ -12,6 +12,7 @@ var step = 0; //current step
 var max_step = fieldsets.length - 1;
 var left, opacity, scale;
 var animDuration = 'fast';
+var isAdditionalStepShown = false;
 
 //jQuery.easing.def = 'easeInOutBack';
 jQuery.easing.def = 'easeOutSine';
@@ -45,7 +46,14 @@ $(document).ready(function () {
     });
     
     $('input[name="productType"]').click(function(){
-        showStep(step + 2);
+        // Escape step with prodType selection
+        if (step == 0){
+            showStep(step + 2);
+            isAdditionalStepShown = false;
+        } else {
+            showStep(step + 1);
+            isAdditionalStepShown = true;
+        }
     });
 
 });
