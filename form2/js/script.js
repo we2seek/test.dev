@@ -39,6 +39,14 @@ $(document).ready(function () {
             },
         },
     });
+    
+    $('input[name="product"]').click(function(){
+        showStep(step + 1);
+    });
+    
+    $('input[name="productType"]').click(function(){
+        showStep(step + 2);
+    });
 
 });
 
@@ -83,6 +91,15 @@ function showStep(nextStep) {
         btnNext.show();
         btnSubmit.hide();
     }
+    
+    // Progressbar
+    progressbar.eq(step).removeClass('active');
+    if (nextStep > step) {
+        progressbar.eq(step).addClass('pass');
+    }
+        
+    progressbar.eq(nextStep).removeClass('pass').addClass('active');
+//    alert("Step: " + step + "\nNext: " + nextStep);
     
     step = nextStep;
 }
