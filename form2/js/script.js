@@ -17,7 +17,7 @@ var max_step = fieldsets.length - 1;
 
 $(document).ready(function () {
     btnPrev.prop('disabled', true);
-
+    progressbar.eq(1).hide();
     btnNext.click(function () {
         if (
             step == 0 &&
@@ -46,7 +46,7 @@ $(document).ready(function () {
         if (step == 0) {
             // Deselect product checked if there
             radioProd.filter(':checked').prop('checked', false);
-
+            progressbar.eq(1).hide();
             showStep(step + 2);
         } else {
             showStep(step + 1);
@@ -55,9 +55,7 @@ $(document).ready(function () {
 
 });
 
-
-
-jQuery.validator.addMethod('radiosRequired', function (value, element, options) {
+$.validator.addMethod('radiosRequired', function (value, element, options) {
     // Page, where this method must work
     var page = parseInt(options);
 
@@ -75,7 +73,7 @@ jQuery.validator.addMethod('radiosRequired', function (value, element, options) 
     return len > 0;
 }, 'Please select product type!');
 
-jQuery.validator.addMethod('inputRequired', function (value, element, options) {
+$.validator.addMethod('inputRequired', function (value, element, options) {
     // Page, where this method must work
     var page = parseInt(options);
 
@@ -84,6 +82,7 @@ jQuery.validator.addMethod('inputRequired', function (value, element, options) {
         return true;
     }
 
+    // Do not check if another page
     if (step != page) {
         return true;
     }
@@ -118,14 +117,14 @@ form.validate({
         } else { // This is the default behavior 
             error.insertAfter(element);
         }
-        
+
     },
 
 });
 
 function showStep(next) {
     nextStep = next;
-    // Prevent form validation on PREV button pressed
+
     if (!form.valid()) {
         return false;
     }
@@ -152,6 +151,14 @@ function showStep(next) {
     }
 
     // Progressbar
+    if (nextStep == 1) {
+        progressbar.eq(1).show();
+    }
+    
+    if (nextStep == 0) {
+        progressbar.eq(1).hide();
+    }
+    
     var i = 0;
 
     for (i = 0; i < nextStep; i++) {
@@ -172,8 +179,8 @@ function showStep(next) {
         dl.eq(step).hide();
     }
 
-    // Do not remeber last step if we go back to prevent loop
-    // between steps
+    // Do not remeber last step if we go back 
+    // to prevent loop between steps
     if (nextStep > step) {
         stepStack.push(step);
     }
