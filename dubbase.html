@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dubbase FM :: Songs</title>
+	<style>
+
+body {
+	width: 450px;
+	margin: 2em auto;
+}
+
+table > thead > tr {
+	background-color: silver;
+	text-transform: uppercase;
+	font-size: medium;
+	height: 2.5em;
+}
+
+table > tbody > tr {
+	font-size: small;
+}
+
+table tr:nth-child(even) {
+	background-color: #eee;
+}
+
+table td {
+	padding: 0.5em;
+}
+
+table td:nth-child(1) {
+	width: 5%;
+}
+
+table td:nth-child(2) {
+	width: 20%;
+}
+table td:nth-child(3) {
+	width: 55%;
+}
+table td:nth-child(4) {
+	width: 20%;
+}
+
+	</style>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>time</th>
+				<th>title</th>
+				<th>saved</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+		</tbody>
+	<table>
+	<script>
+function ready(fn) {
+	if (document.readyState != 'loading'){
+		fn();
+	} else {
+		document.addEventListener('DOMContentLoaded', fn);
+	}
+}
+
+function makeRequest(callBack) {
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open('GET', './dubbase-get.php', true);
+
+	xmlhttp.onload = function() {
+		if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+           if(xmlhttp.status == 200){
+               callBack(xmlhttp.responseText);
+           } else if(xmlhttp.status == 400) {
+              alert('There was an error 400')
+           } else {
+               alert('something else other than 200 was returned')
+           }
+        }
+	};
+
+	xmlhttp.onerror = function(e) {
+		console.log(e)
+	};
+
+	xmlhttp.send();
+}
+
+function processResults(response){
+	// console.log(response);
+	var html = '';
+	var json = JSON.parse(response);
+	
+	json.forEach(function (item, i) {
+		html += '<tr>';
+		html += '<td>' + item.id + '</td>';
+		html += '<td>' + item.time + '</td>';
+		html += '<td>' + item.title + '</td>';
+		html += '<td>' + item.saved + '</td>';
+		html += '</tr>';
+	});
+
+
+	document.querySelector('table tbody').innerHTML = html;
+}
+
+ready(function(){
+	makeRequest(processResults);
+});
+
+</script>
+</body>
+</html>
