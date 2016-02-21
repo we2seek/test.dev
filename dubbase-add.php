@@ -2,11 +2,19 @@
 ini_set('display_errors', 1); 
 error_reporting(-1);
 
-$host   = "localhost";
+// Home config
+$host = "localhost";
 $dbname = "dubbasefm";
-$table  = "songs";
-$user   = "root";
-$pass   = "Integer7_";
+$table = "songs";
+$user = "root";
+$pass = "Integer7_";
+
+// Hosting config
+//$host   = "mysql.hostinger.co.uk";
+//$dbname = "u947120400_db";
+//$table  = "songs";
+//$user   = "u947120400_usr";
+//$pass   = "Integer7_";
 
 $url = "https://dubbase.fm/tracklist";
 $html = file_get_contents($url);
@@ -21,13 +29,6 @@ $xpath = new DomXpath($dom);
 
 $site_content = $xpath->query('.//main[@id="site_content"]/div[not(contains(@id, "current_song"))]');
 
-/*var_dump($site_content);
-foreach ($site_content as $song) {
-	echo $song->nodeName, ": ", $song->nodeValue, "<br>";
-}*/
-
-
-$songs;
 foreach ($site_content as $song) {
 	$debugText = '';
 	$time = $xpath->query('.//div[@class="song_time"]', $song)->item(0)->nodeValue;
@@ -37,35 +38,8 @@ foreach ($site_content as $song) {
 	$title = $xpath->query('.//div[@class="song_title"]', $song)->item(0)->nodeValue;
 	$debugText .= $title . '<br>' . PHP_EOL;
 	echo $debugText;
-	$songs[] = array('time' => $timeStamp, 'title' => $title);
+	$songs[] = array('time_played' => $timeStamp, 'title' => $title);
 }
-
-
-/*echo "<pre>";
-var_dump($songs);
-echo "</pre>";
-*/
-
-define('TIMEZONE', 'Europe/Kiev');
-date_default_timezone_set(TIMEZONE);
-
-// to set timezone in mysql: SET time_zone='offset';
-// where offset is a string value representing the difference to UTC/GMT,
-// e.g. ‘-4:00′, ‘+3:00′, ‘+10:30′, etc. Note that the +/- sign is essential
-// — even for zero — and timezone offsets are not necessarily a whole hour.
-
-// create a new DateTime object, find the offset in seconds, and convert it to minutes
-$now = new DateTime();
-$mins = $now->getOffset() / 60;
-
-// We can now calculate whole hours and minutes. The first line determines whether the offset is positive or negative,
-// then converts the value to a positive number to make the calculation easier
-$sgn = ($mins < 0 ? -1 : 1);
-$mins = abs($mins);
-$hrs = floor($mins / 60);
-$mins -= $hrs * 60;
-
-$offset = sprintf('%+d:%02d', $hrs*$sgn, $mins);
 
 try {
     
@@ -76,13 +50,13 @@ try {
     );
 
     $db = new PDO($dsn, $user, $pass, $opt);
-    $db->exec("SET time_zone='$offset';");
+    $db->exec("SET time_zone='+00:00';");
 
-    $sql = "INSERT INTO `". $table ."` (`time`, `title`) VALUES (:time, :title)";
+    $sql = "INSERT INTO `". $table ."` (`time_played`, `title`) VALUES (:time_played, :title)";
     $stmt = $db->prepare($sql);
     
     foreach ($songs as $song) {
-    	$stmt->bindValue(":time", $song['time']);
+    	$stmt->bindValue(":time_played", $song['time_played']);
 	    $stmt->bindValue(":title", $song['title']);
 	    $stmt->execute();
     }
@@ -99,11 +73,22 @@ try {
 
 $db = null;
 
+/**
+ * @param $hhmm String Hours and minutes (23:59)
+ * @return int UTC Unixtimestamp
+ */
 function getTimestamp ($hhmm) {
 	$exp = explode(':', $hhmm);
 	$now = new DateTime();
-	// Dubbase FM in Germany
-	$now->setTimezone(new DateTimeZone('Europe/Berlin'));
+    // DubbaseFM in Germany
+    $now->setTimezone(new DateTimeZone('Europe/Berlin'));
 	$now->setTime($exp[0], $exp[1], 0);
 	return $now->getTimestamp();
 }
+
+function pr($variable){
+    echo "<hr><pre>";
+    print_r($variable);
+    echo "</pre>";
+}
+
