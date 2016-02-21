@@ -87,6 +87,7 @@
         <th>id</th>
         <th>time</th>
         <th>unixtime</th>
+        <th>artist</th>
         <th>title</th>
         <th>saved</th>
     </tr>
@@ -108,7 +109,8 @@
             function makeRequest(callBack) {
                 var xmlhttp = new XMLHttpRequest();
                 var now = new Date();
-                var currentTimeZoneOffsetInHours = now.getTimezoneOffset() / 60;
+
+                // Send user's time zone offset
                 var params = 'offset=' + now.getTimezoneOffset();
 
                 xmlhttp.open('POST', './dubbase-get.php', true);
@@ -146,8 +148,9 @@
                 json.forEach(function (item, i) {
                     html += '<tr>';
                     html += '<td>' + item.id + '</td>';
-                    html += '<td>' + item.time + '</td>';
+                    html += '<td>' + item.datetime + '</td>';
                     html += '<td>' + item.unixtime + '</td>';
+                    html += '<td>' + item.artist + '</td>';
                     html += '<td>' + item.title + '</td>';
                     html += '<td>' + item.saved + '</td>';
                     html += '</tr>';

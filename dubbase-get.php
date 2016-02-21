@@ -1,5 +1,4 @@
 <?php
-
 header('Content-Type: application/json');
 ini_set('display_errors', 0);
 
@@ -43,8 +42,9 @@ try {
 
     $sql = "SELECT 
     			`id`, 
-    			FROM_UNIXTIME(`time_played`, '%Y-%m-%d %H:%i:%s') as `time`,
-    			`time_played` as `unixtime`,
+    			FROM_UNIXTIME(`time`, '%Y-%m-%d %H:%i:%s') as `datetime`,
+    			`time` as `unixtime`,
+    			`artist`,
     			`title`,
     			`saved`
     		FROM `" . $table . "`
