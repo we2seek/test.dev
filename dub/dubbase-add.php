@@ -1,20 +1,29 @@
 <?php
-ini_set('display_errors', 0);
-error_reporting(0);
+define('REMOTE', 'kkshki.esy.es');
 
-// Home config
-$host = "localhost";
-$dbname = "dubbasefm";
-$table = "songs";
-$user = "root";
-$pass = "Integer7_";
+if (strcmp($_SERVER['HTTP_HOST'], REMOTE) === 0) {
 
-// Hosting config
-//$host   = "mysql.hostinger.co.uk";
-//$dbname = "u947120400_db";
-//$table  = "songs";
-//$user   = "u947120400_usr";
-//$pass   = "Integer7_";
+    ini_set('display_errors', 0);
+    error_reporting(-1);
+
+    // Hosting config
+    $host = "mysql.hostinger.co.uk";
+    $dbname = "u947120400_db";
+    $table = "songs";
+    $user = "u947120400_usr";
+    $pass = "Integer7_";
+} else {
+    ini_set('display_errors', 1);
+    error_reporting(1);
+
+    // Home config
+    $host = "localhost";
+    $dbname = "dubbasefm";
+    $table = "songs";
+    $user = "root";
+    $pass = "Integer7_";
+
+}
 
 $url = "https://dubbase.fm/tracklist";
 $html = file_get_contents($url);
@@ -81,7 +90,21 @@ function getTimestamp($hhmm) {
     $now = new DateTime();
     // DubbaseFM in Germany
     $now->setTimezone(new DateTimeZone('Europe/Berlin'));
+
+    // Tue, 23 Feb 2016 00:05:00 GMT - temporary for test
+    // $now->setTimestamp(1456185900);
+
+    $currentUnix = $now->getTimestamp();
     $now->setTime($exp[0], $exp[1], 0);
+    $parsedUnix = $now->getTimestamp();
+
+    // If script works after 00:00 we parse time values from previous day (23:39 etc)
+    // Ensure the difference not more than 2 hours
+    if(abs($parsedUnix - $currentUnix) > 60*60*2) {
+        // One day ago
+        $now->setTimestamp($parsedUnix - 86400);
+    }
+
     return $now->getTimestamp();
 }
 
