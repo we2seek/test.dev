@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>-->
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,900,100,100italic,300italic,400italic,500italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,900,100,100italic,300italic,400italic,500italic,700italic,900italic'
+          rel='stylesheet' type='text/css'>
     <title>Dubbase FM :: Songs</title>
     <style>
         * {
@@ -75,7 +76,7 @@
             }
 
             table td:nth-child(1), table th:nth-child(1),
-            table td:nth-child(5), table th:nth-child(5){
+            table td:nth-child(5), table th:nth-child(5) {
                 display: none;
                 width: 0px;
                 height: 0px;
@@ -95,7 +96,20 @@
     </style>
 </head>
 <body>
-<table>
+
+<table id="artists">
+    <thead>
+    <tr>
+        <th>artist</th>
+        <th>title</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+
+<table id="songs">
     <thead>
     <tr>
         <th>id</th>
@@ -108,75 +122,90 @@
     <tbody>
 
     </tbody>
-    <table>
-        <script>
-            "use strict";
-            function ready(fn) {
-                if (document.readyState != 'loading') {
-                    fn();
+</table>
+
+<script>
+    "use strict";
+    function ready(fn) {
+        if (document.readyState != 'loading') {
+            fn();
+        } else {
+            document.addEventListener('DOMContentLoaded', fn);
+        }
+    }
+
+    function makeRequest(callBack) {
+        var xmlhttp = new XMLHttpRequest();
+        var now = new Date();
+
+        // Send user's time zone offset
+        var params = 'offset=' + now.getTimezoneOffset();
+
+        xmlhttp.open('POST', './dubbase-get.php', true);
+
+        //Send the proper header information along with the request
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.setRequestHeader("Content-length", params.length);
+        xmlhttp.setRequestHeader("Connection", "close");
+
+        xmlhttp.onload = function () {
+            if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+                if (xmlhttp.status == 200) {
+                    callBack(xmlhttp.responseText);
+                } else if (xmlhttp.status == 400) {
+                    alert('There was an error 400: \n' + xmlhttp.statusText);
+                    console.log(xmlhttp);
                 } else {
-                    document.addEventListener('DOMContentLoaded', fn);
+                    alert('something else other than 200 was returned')
                 }
             }
+        };
 
-            function makeRequest(callBack) {
-                var xmlhttp = new XMLHttpRequest();
-                var now = new Date();
+        xmlhttp.onerror = function (e) {
+            console.log(e)
+        };
 
-                // Send user's time zone offset
-                var params = 'offset=' + now.getTimezoneOffset();
+        xmlhttp.send(params);
+    }
 
-                xmlhttp.open('POST', './dubbase-get.php', true);
-
-                //Send the proper header information along with the request
-                xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xmlhttp.setRequestHeader("Content-length", params.length);
-                xmlhttp.setRequestHeader("Connection", "close");
-
-                xmlhttp.onload = function () {
-                    if (xmlhttp.readyState == XMLHttpRequest.DONE) {
-                        if (xmlhttp.status == 200) {
-                            callBack(xmlhttp.responseText);
-                        } else if (xmlhttp.status == 400) {
-                            alert('There was an error 400: \n' + xmlhttp.statusText);
-                            console.log(xmlhttp);
-                        } else {
-                            alert('something else other than 200 was returned')
-                        }
-                    }
-                };
-
-                xmlhttp.onerror = function (e) {
-                    console.log(e)
-                };
-
-                xmlhttp.send(params);
-            }
-
-            function processResults(response) {
-                var html = '';
-                var json = JSON.parse(response);
-
-                json.forEach(function (item, i) {
-                    html += '<tr>';
-                    html += '<td>' + item.id + '</td>';
-                    html += '<td>' + item.ftime + '</td>';
-                    html += '<td>' + item.artist + '</td>';
-                    html += '<td>' + item.title + '</td>';
-                    html += '<td>' + item.fsaved + '</td>';
-                    html += '</tr>';
-                });
-
-
-                document.querySelector('table tbody').innerHTML = html;
-            }
-
-            ready(function () {
-                makeRequest(processResults);
+    function processResults(response) {
+        var html = '';
+        var json = JSON.parse(response);
+        if (json.lastDay != null) {
+            json.lastDay.forEach(function (item, i) {
+                html += '<tr>';
+                html += '<td>' + item.id + '</td>';
+                html += '<td>' + item.ftime + '</td>';
+                html += '<td>' + item.artist + '</td>';
+                html += '<td>' + item.title + '</td>';
+                html += '<td>' + item.fsaved + '</td>';
+                html += '</tr>';
             });
+        } else {
+            html += json.error;
+        }
+
+        document.querySelector('#songs tbody').innerHTML = html;
+
+        if (json.artists != null) {
+            html = '<table>';
+            json.artists.forEach(function (item, i) {
+                html += '<tr>';
+                html += '<td>' + item.artist + '</td>';
+                html += '<td>' + item.count + '</td>';
+                html += '</tr>';
+            });
+            html += '</table>';
+        }
+
+        document.querySelector('#artists tbody').innerHTML = html;
+    }
+
+    ready(function () {
+        makeRequest(processResults);
+    });
 
 
-
-        </script>
+</script>
 </body>
 </html>

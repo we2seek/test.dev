@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <title>Binary converter</title>
+    <style>
+        * {
+            font-family: 'Ubuntu', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #002b36;
+        }
+
+        #container {
+            background-color: #002b36;
+        }
+
+        h1 {
+            font-weight: normal;
+            color: #586e75;
+            margin: 25px 5px 5px;
+            text-align: center;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 5px 15px;
+            margin: 15px 0px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        input[type="button"] {
+            width: 100%;
+            background-color: #002B36;
+            border: 2px solid #cb4b16;
+            color: #cb4b16;
+            padding: 10px 25px;
+            font-size: 16pt;
+            margin: 0px 0px 15px 0px;
+            -webkit-transition: background-color 0.25s;
+            -moz-transition: background-color 0.25s;
+            -ms-transition: background-color 0.25s;
+            -o-transition: background-color 0.25s;
+            transition: background-color 0.25s;
+        }
+
+        input[type="button"]:hover {
+            background-color: #cb4b16;
+            color: #002B36;
+        }
+
+        .btnsWrapper {
+            width: 100%;
+            margin: 0px auto;
+            text-align: center;
+        }
+
+        @media all and (min-width: 480px) {
+            body {
+                background-color: #fff;
+            }
+            #container {
+                border: 2px solid #002B36;
+                width: 480px;
+                margin: 25px auto;
+                -webkit-box-shadow: -1px 3px 19px -2px rgba(0,0,0,0.75);
+                -moz-box-shadow: -1px 3px 19px -2px rgba(0,0,0,0.75);
+                box-shadow: -1px 3px 19px -2px rgba(0,0,0,0.75);
+            }
+
+            textarea {
+                width: 470px;
+                margin: 15px 5px;
+            }
+
+            input[type="button"] {
+                width: 470px;
+                margin: 0px 5px 15px 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <h1>Конвертер, блять!</h1>
+    <textarea name="source" id="source" cols="25" rows="10" autofocus></textarea>
+    <div class="btnsWrapper">
+        <input type="button" onclick="convert(binToText);" value="Bin To Text">
+        <input type="button" onclick="convert(textToBin);" value="Text To Bin">
+    </div>
+
+</div>
+
+
+<script>
+    function convert(fn) {
+        var src = document.getElementById("source");
+        var text = src.value;
+        var convertedText = fn(text);
+        if (convertedText.length > 0) {
+            src.value = convertedText;
+            src.select();
+        } else {
+            alert('Что-то пошло не так, Бро!');
+        }
+
+    }
+
+    function binToText(binaryText) {
+        var textArray = binaryText.split(' ');
+        var intCode = 0;
+        var txtResult = '';
+        textArray.forEach(function (item) {
+            if (item.length > 0) {
+                intCode = parseInt(item.trim(), 2);
+                if (!isNaN(intCode)) {
+                    txtResult += String.fromCharCode(intCode);
+                }
+            }
+        });
+
+        // For win1251 -> uft8 decode
+        // return decodeURIComponent(escape(txtResult));
+        return txtResult;
+    }
+
+    function textToBin(text) {
+        var words = text.split(' ');
+        var result = '';
+
+        words.forEach(function (word) {
+            var i = 0;
+            if (word.length > 0) {
+                while (i < word.length) {
+                    result += word.charCodeAt(i).toString(2) + '  ';
+                    i++;
+                }
+                result += ' '.charCodeAt(0).toString(2) + ' '
+            }
+
+            result += ' ';
+
+        });
+
+        return result;
+    }
+
+</script>
+</body>
+</html>

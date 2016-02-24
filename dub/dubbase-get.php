@@ -66,12 +66,32 @@ try {
     $stmt->bindValue(':unixtime', $startOfToday->getTimestamp(), PDO::PARAM_INT);
     $stmt->execute();
 
+    $result = array();
+
     if (!$stmt) {
-        echo $stmt->errorCode();
+        $result['lastDay'] = null;
+        $result['error'] = $stmt->errorCode();
     } else {
-        $records = $stmt->fetchAll();
-        echo json_encode($records);
+        $result['lastDay'] = $stmt->fetchAll();
     }
+
+    $sql = "SELECT `artist`, COUNT(`artist`) as `count`
+    FROM `songs`
+    GROUP BY `artist`
+    HAVING `count` > 2
+    ORDER BY `count` DESC";
+
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+
+    if (!$stmt) {
+        $result['artists'] = null;
+        $result['error'] = $stmt->errorCode();
+    } else {
+        $result['artists'] = $stmt->fetchAll();
+    }
+
+    echo json_encode($result);
 
 } catch (PDOException $e) {
     echo $e->getMessage() . PHP_EOL;
