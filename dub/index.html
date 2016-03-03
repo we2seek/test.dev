@@ -97,17 +97,9 @@
 </head>
 <body>
 
-<table id="artists">
-    <thead>
-    <tr>
-        <th>artist</th>
-        <th>title</th>
-    </tr>
-    </thead>
-    <tbody>
-
-    </tbody>
-</table>
+<div id="artists">
+    
+</div>
 
 <table id="songs">
     <thead>
@@ -145,8 +137,8 @@
 
         //Send the proper header information along with the request
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xmlhttp.setRequestHeader("Content-length", params.length);
-        xmlhttp.setRequestHeader("Connection", "close");
+        /*xmlhttp.setRequestHeader("Content-length", params.length);
+        xmlhttp.setRequestHeader("Connection", "close");*/
 
         xmlhttp.onload = function () {
             if (xmlhttp.readyState == XMLHttpRequest.DONE) {
@@ -187,18 +179,25 @@
 
         document.querySelector('#songs tbody').innerHTML = html;
 
-        if (json.artists != null) {
-            html = '<table>';
-            json.artists.forEach(function (item, i) {
-                html += '<tr>';
-                html += '<td>' + item.artist + '</td>';
-                html += '<td>' + item.count + '</td>';
-                html += '</tr>';
-            });
-            html += '</table>';
+        html = '';
+        if (json.total === null) {
+            html = 'No data available...';
         }
 
-        document.querySelector('#artists tbody').innerHTML = html;
+        for (var key in json.total) {
+            if (json.total.hasOwnProperty(key)) {
+                html += '<dl>';
+                html += '<dt>' + key + ' [' + json.total[key].total + ' times]</dt>';
+                html += '<dd><ul>';
+                json.total[key].songs.forEach(function(item, i){
+                    html += '<li>[' + item.count + '] ' + item.title + '</li>';
+                });
+                
+                html += '</ul></dd>';
+                html += '</dl>';
+            }
+        }
+        document.querySelector('#artists').innerHTML = html;
     }
 
     ready(function () {

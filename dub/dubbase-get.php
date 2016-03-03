@@ -75,20 +75,40 @@ try {
         $result['lastDay'] = $stmt->fetchAll();
     }
 
-    $sql = "SELECT `artist`, COUNT(`artist`) as `count`
-    FROM `songs`
-    GROUP BY `artist`
-    HAVING `count` > 2
-    ORDER BY `count` DESC";
+    $sql = "
+    SELECT 
+        s.artist, s.title, COUNT(s.title) AS cnt_title, s1.cnt AS cnt_artist 
+    FROM 
+        songs s 
+    JOIN (
+        SELECT 
+            artist, COUNT(artist) AS cnt 
+        FROM 
+            songs 
+        GROUP BY 
+            artist
+        HAVING
+            cnt > 10
+        ) AS s1 ON s.artist = s1.artist 
+    GROUP BY 
+        s.title 
+    ORDER BY 
+        s1.cnt DESC, s.artist, cnt_title DESC, s.title;";
 
     $stmt = $db->prepare($sql);
     $stmt->execute();
-
+    
+    $rows = array();
     if (!$stmt) {
-        $result['artists'] = null;
+        $result['total'] = null;
         $result['error'] = $stmt->errorCode();
     } else {
-        $result['artists'] = $stmt->fetchAll();
+        $rows = $stmt->fetchAll();
+    }
+    
+    foreach ($rows as $row) {
+        $result['total'][$row['artist']]['songs'][] = array('title' => $row['title'], 'count' => $row['cnt_title']);
+        $result['total'][$row['artist']]['total'] = $row['cnt_artist'];
     }
 
     echo json_encode($result);
